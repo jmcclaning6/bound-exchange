@@ -558,6 +558,7 @@ section {
 .agent-icon {
   width: 48px;
   height: 48px;
+  padding: 8px;
   border-radius: var(--radius-xs);
   background: var(--color-white);
   border: 1.5px solid var(--color-line);
@@ -568,6 +569,7 @@ section {
   cursor: pointer;
   position: relative;
   box-shadow: var(--shadow-1);
+  box-sizing: border-box;
 }
 
 .agent-icon:hover {
@@ -606,18 +608,37 @@ section {
 
 /* ── CONNECT SECTION ── */
 .connect-section {
-  padding: var(--space-96) var(--space-64);
+  padding: 0 !important;
+  margin: 0 !important;
+  width: 100vw !important;
+  max-width: 100vw !important;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw !important;
+  margin-right: -50vw !important;
 }
 
 .connect-card {
-  max-width: 720px;
-  margin: 0 auto;
-  background: var(--color-ink);
-  border-radius: var(--radius-m);
-  padding: var(--space-64);
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  background-color: #262626;
+  background-attachment: scroll;
+  border-radius: 0;
+  padding: 60px var(--space-64);
   text-align: center;
   position: relative;
   overflow: hidden;
+  box-sizing: border-box;
+  background-image:
+    linear-gradient(135deg, rgba(38, 38, 38, 0.5) 0%, rgba(38, 38, 38, 0.5) 100%),
+    url('spirals.gif'),
+    radial-gradient(circle at 20% 50%, rgba(255, 183, 0, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(255, 183, 0, 0.03) 0%, transparent 50%);
+  background-size: auto, 100vw auto, auto, auto;
+  background-position: center, 50% 50%, center, center;
+  background-repeat: repeat, no-repeat, repeat, repeat;
 }
 
 .connect-card h2 {
@@ -647,6 +668,8 @@ section {
   line-height: 1.75;
   color: rgba(255,255,255,0.8);
   overflow-x: auto;
+  max-width: 720px;
+  margin: 0 auto;
 }
 
 .code-block .key { color: var(--color-sun); }
@@ -849,7 +872,7 @@ footer {
       <p class="prompt-text">"I need a short Bound description for our integrations page"</p>
       <div class="prompt-tags">
         <span class="prompt-tag sun">Boilerplate</span>
-        <span class="prompt-tag">Voice & Guardrails</span>
+        <span class="prompt-tag sun">Voice & Guardrails</span>
       </div>
     </div>
 
@@ -857,8 +880,8 @@ footer {
       <h4>Write About Bound</h4>
       <p class="prompt-text">"Help me write a blog post about our integration with Bound for self-custodial Bitcoin trading"</p>
       <div class="prompt-tags">
-        <span class="prompt-tag">Glossary</span>
-        <span class="prompt-tag">Boilerplate</span>
+        <span class="prompt-tag sun">Glossary</span>
+        <span class="prompt-tag sun">Boilerplate</span>
       </div>
     </div>
 
@@ -866,8 +889,8 @@ footer {
       <h4>Understand the Tech</h4>
       <p class="prompt-text">"Explain what Bound Addresses and HTLCs do in plain English so I can describe it to our users"</p>
       <div class="prompt-tags">
-        <span class="prompt-tag">Glossary</span>
-        <span class="prompt-tag">Translation</span>
+        <span class="prompt-tag sun">Glossary</span>
+        <span class="prompt-tag sun">Translation</span>
       </div>
     </div>
 
@@ -884,8 +907,8 @@ footer {
       <h4>Get the Brand Right</h4>
       <p class="prompt-text">"What are the official Bound colors and logo files I should use in our co-marketing material?"</p>
       <div class="prompt-tags">
-        <span class="prompt-tag">Brand Assets</span>
-        <span class="prompt-tag">Logos</span>
+        <span class="prompt-tag sun">Brand Assets</span>
+        <span class="prompt-tag sun">Logos</span>
       </div>
     </div>
 
@@ -894,7 +917,7 @@ footer {
       <p class="prompt-text">"How many markets does Bound support? I want accurate stats for our pitch deck"</p>
       <div class="prompt-tags">
         <span class="prompt-tag sun">Stats</span>
-        <span class="prompt-tag">Live Data</span>
+        <span class="prompt-tag sun">Live Data</span>
       </div>
     </div>
   </div>
@@ -906,41 +929,59 @@ footer {
   <div class="section-label fade-in">Core Brand Pillars</div>
   <div class="section-title fade-in">Bound's primary messaging and value propositions.</div>
 
-  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 32px; margin-top: 48px; align-items: stretch;">
-    <div class="pillar-card fade-in" style="padding: 24px; background: var(--color-paper); border-radius: 16px; border: 1px solid var(--color-line);">
-      <h4 style="font-size: 18px; font-weight: 600; margin-bottom: 8px; color: var(--color-ink);">Capital Markets Bound to Bitcoin</h4>
-      <p style="font-size: 15px; line-height: 1.6; color: var(--color-text-secondary); margin-bottom: 12px;">RFQ-powered capital markets infrastructure purpose-built for Bitcoin.</p>
-      <p style="font-size: 13px; line-height: 1.5; color: var(--color-disabled); font-style: italic;">Instantly trade stocks, crypto, stablecoins, and commodities—directly from your Bitcoin wallet. Your keys, always.</p>
-    </div>
-
+  <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin-top: 48px; align-items: stretch;">
     <div class="pillar-card fade-in" style="padding: 24px; background: var(--color-paper); border-radius: 16px; border: 1px solid var(--color-line);">
       <h4 style="font-size: 18px; font-weight: 600; margin-bottom: 8px; color: var(--color-ink);">Smooth UX, Easy Onboarding</h4>
-      <p style="font-size: 15px; line-height: 1.6; color: var(--color-text-secondary); margin-bottom: 12px;">One passkey login with no wallet switching or connection friction.</p>
-      <p style="font-size: 13px; line-height: 1.5; color: var(--color-disabled); font-style: italic;">Onboard in seconds. Everything you need in one place.</p>
+      <p style="font-size: 15px; line-height: 1.6; color: var(--color-text-secondary); margin-bottom: 12px;">One passkey unlocks wallets on Bitcoin, Ethereum, and Solana. Connect your existing wallet or create one in seconds. No seed phrases, no extensions, no friction.</p>
+      <p style="font-size: 13px; line-height: 1.5; color: var(--color-disabled); font-style: italic;">Relief, empowerment. "Finally, someone built this."</p>
     </div>
 
     <div class="pillar-card fade-in" style="padding: 24px; background: var(--color-paper); border-radius: 16px; border: 1px solid var(--color-line);">
-      <h4 style="font-size: 18px; font-weight: 600; margin-bottom: 8px; color: var(--color-ink);">Secure Architecture, No Honey Pots</h4>
-      <p style="font-size: 15px; line-height: 1.6; color: var(--color-text-secondary); margin-bottom: 12px;">Each user's assets remain separate and secure.</p>
-      <p style="font-size: 13px; line-height: 1.5; color: var(--color-disabled); font-style: italic;">No pooled funds. Your assets stay yours.</p>
+      <h4 style="font-size: 18px; font-weight: 600; margin-bottom: 8px; color: var(--color-ink);">Spot BTC Trading & Cross-Chain Swaps</h4>
+      <p style="font-size: 15px; line-height: 1.6; color: var(--color-text-secondary); margin-bottom: 12px;">Trade BTC at market-set rates with your signature only, settling directly on Bitcoin. Swap any major asset for BTC in seconds—atomic, onchain, no intermediaries.</p>
+      <p style="font-size: 13px; line-height: 1.5; color: var(--color-disabled); font-style: italic;">Control and speed. "I can trade BTC natively without trusting a CEX."</p>
     </div>
 
     <div class="pillar-card fade-in" style="padding: 24px; background: var(--color-paper); border-radius: 16px; border: 1px solid var(--color-line);">
-      <h4 style="font-size: 18px; font-weight: 600; margin-bottom: 8px; color: var(--color-ink);">Settlement Speed</h4>
-      <p style="font-size: 15px; line-height: 1.6; color: var(--color-text-secondary); margin-bottom: 12px;">Bitcoin transactions that move at the speed of a trade.</p>
-      <p style="font-size: 13px; line-height: 1.5; color: var(--color-disabled); font-style: italic;">&lt;5 sec settlement time.</p>
+      <h4 style="font-size: 18px; font-weight: 600; margin-bottom: 8px; color: var(--color-ink);">Self-Custody, Full Control</h4>
+      <p style="font-size: 15px; line-height: 1.6; color: var(--color-text-secondary); margin-bottom: 12px;">Your keys, your passkey, your account. Unlike FTX, BlockFi, or Celsius—Bound never takes custody, never lends out your Bitcoin, never uses it as collateral.</p>
+      <p style="font-size: 13px; line-height: 1.5; color: var(--color-disabled); font-style: italic;">Peace of mind. "My Bitcoin is mine, and I can use it to trade, borrow, and earn."</p>
     </div>
 
     <div class="pillar-card fade-in" style="padding: 24px; background: var(--color-paper); border-radius: 16px; border: 1px solid var(--color-line);">
-      <h4 style="font-size: 18px; font-weight: 600; margin-bottom: 8px; color: var(--color-ink);">Zero Bridges or Wraps</h4>
-      <p style="font-size: 15px; line-height: 1.6; color: var(--color-text-secondary); margin-bottom: 12px;">Direct Bitcoin trading with native settlement.</p>
-      <p style="font-size: 13px; line-height: 1.5; color: var(--color-disabled); font-style: italic;">0 Bridges or wraps. Trade directly.</p>
+      <h4 style="font-size: 18px; font-weight: 600; margin-bottom: 8px; color: var(--color-ink);">Fixed-Rate BTC Loans, No Liquidation</h4>
+      <p style="font-size: 15px; line-height: 1.6; color: var(--color-text-secondary); margin-bottom: 12px;">Keep your Bitcoin, access dollars. Fixed-rate, fixed-term loans with zero liquidation risk and zero margin calls. Your collateral stays on Bitcoin—never rehypothecated, never pooled.</p>
+      <p style="font-size: 13px; line-height: 1.5; color: var(--color-disabled); font-style: italic;">Peace of mind, control. "Borrow against Bitcoin without fear."</p>
     </div>
 
     <div class="pillar-card fade-in" style="padding: 24px; background: var(--color-paper); border-radius: 16px; border: 1px solid var(--color-line);">
-      <h4 style="font-size: 18px; font-weight: 600; margin-bottom: 8px; color: var(--color-ink);">Scale & Proof</h4>
-      <p style="font-size: 15px; line-height: 1.6; color: var(--color-text-secondary); margin-bottom: 12px;">Real adoption and real usage metrics.</p>
-      <p style="font-size: 13px; line-height: 1.5; color: var(--color-disabled); font-style: italic;">10K+ Funded accounts. $25M+ Volume processed.</p>
+      <h4 style="font-size: 18px; font-weight: 600; margin-bottom: 8px; color: var(--color-ink);">RFQ-Powered DeFi</h4>
+      <p style="font-size: 15px; line-height: 1.6; color: var(--color-text-secondary); margin-bottom: 12px;">Professional solvers compete in real time to give you the best price on every trade and loan. Your rate is set by the market, not a pool. Peer-to-peer, not peer-to-pool.</p>
+      <p style="font-size: 13px; line-height: 1.5; color: var(--color-disabled); font-style: italic;">Fairness and transparency. "My price is earned, not extracted."</p>
+    </div>
+
+    <div class="pillar-card fade-in" style="padding: 24px; background: var(--color-paper); border-radius: 16px; border: 1px solid var(--color-line);">
+      <h4 style="font-size: 18px; font-weight: 600; margin-bottom: 8px; color: var(--color-ink);">Multi-Chain, Single Account</h4>
+      <p style="font-size: 15px; line-height: 1.6; color: var(--color-text-secondary); margin-bottom: 12px;">One account for all your onchain activity across activity, including Bitcoin. Wallets unified, frictionless experience.</p>
+      <p style="font-size: 13px; line-height: 1.5; color: var(--color-disabled); font-style: italic;">Simplicity at scale. "Everything in one place, no juggling."</p>
+    </div>
+
+    <div class="pillar-card fade-in" style="padding: 24px; background: var(--color-paper); border-radius: 16px; border: 1px solid var(--color-line);">
+      <h4 style="font-size: 18px; font-weight: 600; margin-bottom: 8px; color: var(--color-ink);">Faster Bitcoin</h4>
+      <p style="font-size: 15px; line-height: 1.6; color: var(--color-text-secondary); margin-bottom: 12px;">Sub-30 second settlement. Trade, borrow, and settle at the speed of Bitcoin DeFi.</p>
+      <p style="font-size: 13px; line-height: 1.5; color: var(--color-disabled); font-style: italic;">Speed and modernity. "Bitcoin that moves at the speed of markets."</p>
+    </div>
+
+    <div class="pillar-card fade-in" style="padding: 24px; background: var(--color-paper); border-radius: 16px; border: 1px solid var(--color-line);">
+      <h4 style="font-size: 18px; font-weight: 600; margin-bottom: 8px; color: var(--color-ink);">Secure Architecture</h4>
+      <p style="font-size: 15px; line-height: 1.6; color: var(--color-text-secondary); margin-bottom: 12px;">No pooled funds. No single contract to exploit. Atomic settlement on Bitcoin. Each transaction is peer-to-peer with zero counterparty risk.</p>
+      <p style="font-size: 13px; line-height: 1.5; color: var(--color-disabled); font-style: italic;">Security and trust. "Safe by design, not by promises."</p>
+    </div>
+
+    <div class="pillar-card fade-in" style="padding: 24px; background: var(--color-paper); border-radius: 16px; border: 1px solid var(--color-line);">
+      <h4 style="font-size: 18px; font-weight: 600; margin-bottom: 8px; color: var(--color-ink);">Bitcoin-Native Assets</h4>
+      <p style="font-size: 15px; line-height: 1.6; color: var(--color-text-secondary); margin-bottom: 12px;">Access stablecoins, tokens, and collectibles issued directly on Bitcoin—all tradable from your self-custodial account. Bitcoin as a platform.</p>
+      <p style="font-size: 13px; line-height: 1.5; color: var(--color-disabled); font-style: italic;">Innovation and possibility. "Bitcoin is more than BTC."</p>
     </div>
   </div>
 </section>
@@ -1110,42 +1151,33 @@ footer {
 <div class="agents-section">
   <p>Works with these agents & more</p>
   <div class="agents-scroll">
-    <div class="agent-icon">
-      <span class="tooltip">Claude</span>
-      <svg viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    </div>
-    <div class="agent-icon">
-      <span class="tooltip">ChatGPT</span>
-      <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.5"/><path d="M8 12h8M12 8v8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-    </div>
-    <div class="agent-icon">
-      <span class="tooltip">Cursor</span>
-      <svg viewBox="0 0 24 24" fill="none"><path d="M4 4l16 8-16 8V4z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
-    </div>
-    <div class="agent-icon">
-      <span class="tooltip">VS Code</span>
-      <svg viewBox="0 0 24 24" fill="none"><path d="M17 3L7 12l10 9V3z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M7 12L2 8v8l5-4z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
-    </div>
-    <div class="agent-icon">
-      <span class="tooltip">Windsurf</span>
-      <svg viewBox="0 0 24 24" fill="none"><path d="M4 20C8 8 16 4 20 4M4 20c4-6 10-10 16-10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-    </div>
-    <div class="agent-icon">
-      <span class="tooltip">Cline</span>
-      <svg viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="16" height="16" rx="3" stroke="currentColor" stroke-width="1.5"/><path d="M9 10l-2 2 2 2M15 10l2 2-2 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    </div>
-    <div class="agent-icon">
-      <span class="tooltip">Gemini</span>
-      <svg viewBox="0 0 24 24" fill="none"><path d="M12 2c0 5.5-4.5 10-10 10 5.5 0 10 4.5 10 10 0-5.5 4.5-10 10-10-5.5 0-10-4.5-10-10z" stroke="currentColor" stroke-width="1.5"/></svg>
-    </div>
-    <div class="agent-icon">
-      <span class="tooltip">Goose</span>
-      <svg viewBox="0 0 24 24" fill="none"><path d="M12 4c-3 0-5 3-5 6s2 4 5 4 5-1 5-4-2-6-5-6z" stroke="currentColor" stroke-width="1.5"/><path d="M12 14v6M9 20h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-    </div>
-    <div class="agent-icon">
-      <span class="tooltip">Roo Code</span>
-      <svg viewBox="0 0 24 24" fill="none"><path d="M9 9l-4 3 4 3M15 9l4 3-4 3M13 7l-2 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    </div>
+    <a href="https://claude.ai" target="_blank" class="agent-icon" title="Claude">
+      <img src="Claude.png" alt="Claude" style="width: 100%; height: 100%; object-fit: contain;">
+    </a>
+    <a href="https://chatgpt.com" target="_blank" class="agent-icon" title="ChatGPT">
+      <img src="ChatGPT.png" alt="ChatGPT" style="width: 100%; height: 100%; object-fit: contain;">
+    </a>
+    <a href="https://cursor.sh" target="_blank" class="agent-icon" title="Cursor">
+      <img src="Cursor.png" alt="Cursor" style="width: 100%; height: 100%; object-fit: contain;">
+    </a>
+    <a href="https://code.visualstudio.com" target="_blank" class="agent-icon" title="Visual Studio Code">
+      <img src="Visual Studio Code.png" alt="Visual Studio Code" style="width: 100%; height: 100%; object-fit: contain;">
+    </a>
+    <a href="https://wavesurf.ai" target="_blank" class="agent-icon" title="Wavesurf">
+      <img src="Wavesurf.png" alt="Wavesurf" style="width: 100%; height: 100%; object-fit: contain;">
+    </a>
+    <a href="https://cline.bot" target="_blank" class="agent-icon" title="Cline">
+      <img src="Cline.png" alt="Cline" style="width: 100%; height: 100%; object-fit: contain;">
+    </a>
+    <a href="https://gemini.google.com" target="_blank" class="agent-icon" title="Gemini">
+      <img src="Gemini.png" alt="Gemini" style="width: 100%; height: 100%; object-fit: contain;">
+    </a>
+    <a href="https://goose-docs.ai/" target="_blank" class="agent-icon" title="Goose">
+      <img src="Goose.png" alt="Goose" style="width: 100%; height: 100%; object-fit: contain;">
+    </a>
+    <a href="https://roocode.com/" target="_blank" class="agent-icon" title="Roo Code">
+      <img src="Roo Code.png" alt="Roo Code" style="width: 100%; height: 100%; object-fit: contain;">
+    </a>
   </div>
 </div>
 
@@ -1177,6 +1209,7 @@ footer {
   <div class="footer-cols">
     <div class="footer-col">
       <h5>Resources</h5>
+      <a href="https://bound.exchange/" target="_blank">Homepage ↗</a>
       <a href="/api">API Info</a>
       <a href="/health">Health Check</a>
       <a href="https://docs.bound.exchange/" target="_blank">Documentation ↗</a>
