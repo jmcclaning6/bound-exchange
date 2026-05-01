@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bound News</title>
+  <link rel="icon" type="image/png" href="../Bound-Favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --color-ink: #262626;
+      --color-paper: #F7F7F7;
+      --color-white: #FFFFFF;
+      --color-sun: #FFB700;
+      --color-amber: #E59A00;
+      --color-sage: #7A8F6A;
+      --color-line: #E8E8E8;
+      --color-gray: #D3D4D1;
+      --color-cream: #F5EFE4;
+      --color-text-secondary: #5B5B5B;
+      --color-disabled: #A6A6A6;
+      --color-error: #C94B3B;
+
+      --radius-xs: 10px;
+      --radius-s: 16px;
+      --radius-m: 22px;
+      --radius-pill: 999px;
+
+      --shadow-1: 0 8px 24px rgba(38,38,38,0.06);
+      --shadow-2: 0 12px 32px rgba(38,38,38,0.08);
+
+      --font-headline: 'Inter', sans-serif;
+      --font-body: 'DM Sans', 'Inter', sans-serif;
+    }
+
+    body {
+      background: var(--color-paper);
+      color: var(--color-ink);
+      font-family: var(--font-body);
+      font-size: 18px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+      padding-top: 64px;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 64px; height: 64px;
+      background: rgba(247,247,247,0.92);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      transition: box-shadow 0.3s;
+    }
+    nav.scrolled { box-shadow: 0 1px 24px rgba(38,38,38,0.06); }
+
+    .nav-logo {
+      display: flex; align-items: center; gap: 10px;
+      text-decoration: none;
+    }
+    .nav-logo-mark {
+      width: 34px; height: 34px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .nav-logo-mark img {
+      width: 100%; height: 100%;
+      object-fit: contain;
+    }
+    .nav-logo-wordmark {
+      height: 18px;
+      display: block;
+    }
+    .nav-links {
+      display: flex; align-items: center; gap: 36px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-family: var(--font-body);
+      color: var(--color-text-secondary);
+      text-decoration: none;
+      font-size: 15px; font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--color-ink); }
+    .nav-cta {
+      background: var(--color-ink); color: var(--color-white) !important;
+      padding: 10px 22px; border-radius: var(--radius-pill);
+      font-size: 15px !important; font-weight: 600 !important;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+    .nav-cta:hover { opacity: 0.88; transform: translateY(-1px); }
+
+    /* ─── MOBILE MENU ─── */
+    .mobile-menu-btn {
+      display: none;
+      background: none; border: none; cursor: pointer;
+      width: 40px; height: 40px;
+      align-items: center; justify-content: center;
+      flex-direction: column; gap: 5px;
+    }
+    .mobile-menu-btn span {
+      display: block; width: 22px; height: 2px;
+      background: var(--color-ink); border-radius: 2px;
+      transition: 0.3s;
+    }
+
+    .coming-soon {
+      cursor: not-allowed;
+      text-align: center;
+    }
+    .nav-cta.coming-soon {
+      display: inline-block !important;
+      width: 145px !important;
+      white-space: nowrap;
+      text-align: center !important;
+      overflow: visible;
+    }
+    .coming-soon:hover {
+      transform: none !important;
+    }
+    .coming-soon .text {
+      display: inline;
+    }
+    .coming-soon .coming-text {
+      display: none;
+    }
+    .coming-soon:hover .text {
+      display: none;
+    }
+    .coming-soon:hover .coming-text {
+      display: inline;
+    }
+
+    .read-link {
+      transition: all 0.2s ease;
+    }
+
+    .news-item:hover .read-link {
+      transform: translateX(4px);
+    }
+
+    .news-content {
+      display: flex;
+      gap: 0;
+      align-items: stretch;
+      width: 100%;
+    }
+
+    .news-image {
+      width: 320px;
+      height: 320px;
+      flex-shrink: 0;
+      border-radius: 0;
+      object-fit: cover;
+      background: var(--color-cream);
+    }
+
+    .news-text {
+      flex: 1;
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .news-header {
+      padding: 80px 64px;
+      background: var(--color-white);
+      border-bottom: 1px solid var(--color-line);
+      text-align: center;
+    }
+
+    .news-header h1 {
+      font-family: 'Inter', sans-serif;
+      font-size: 56px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: 12px;
+    }
+
+    .news-header p {
+      font-size: 18px;
+      color: var(--color-text-secondary);
+    }
+
+    .news-feed {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 80px 64px;
+    }
+
+    .news-item {
+      background: var(--color-white);
+      padding: 0;
+      margin-bottom: 24px;
+      border-radius: var(--radius-s);
+      border: 1px solid var(--color-line);
+      transition: all 0.3s ease;
+      display: flex;
+      text-decoration: none;
+      color: inherit;
+      cursor: pointer;
+      gap: 0;
+      align-items: stretch;
+      box-shadow: var(--shadow-1);
+      overflow: hidden;
+    }
+
+    .news-item:hover {
+      border-color: var(--color-sun);
+      box-shadow: var(--shadow-2);
+    }
+
+    .news-date {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--color-sage);
+      text-transform: uppercase;
+      letter-spacing: 0.10em;
+      line-height: 1.30;
+      margin-bottom: 12px;
+    }
+
+    .news-item h3 {
+      font-family: var(--font-headline);
+      font-size: 28px;
+      font-weight: 800;
+      line-height: 1.18;
+      margin-bottom: 16px;
+      color: var(--color-ink);
+      letter-spacing: -0.01em;
+    }
+
+    .news-item p {
+      font-family: var(--font-body);
+      font-size: 16px;
+      color: var(--color-text-secondary);
+      margin-bottom: 20px;
+      line-height: 1.60;
+    }
+
+    .news-item a {
+      display: inline-block;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--color-sage);
+      text-decoration: underline;
+      transition: all 0.2s ease;
+    }
+
+    .news-item a:hover {
+      color: var(--color-sage);
+      transform: translateX(4px);
+    }
+
+    .news-category {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 900;
+      color: var(--color-white);
+      background: var(--color-sun);
+      border: none;
+      padding: 4px 8px;
+      border-radius: var(--radius-xs);
+      margin-left: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-family: var(--font-headline);
+    }
+
+    .social-icon {
+      width: 11px; height: 11px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .social-icon img {
+      width: 100%; height: 100%;
+      object-fit: contain;
+    }
+    .nav-social { display: flex; align-items: center; gap: 8px; }
+    .nav-social a {
+      width: 13px; height: 13px;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--color-text-secondary);
+      transition: color 0.2s;
+    }
+    .nav-social a:hover { color: var(--color-ink); }
+    .nav-social a img {
+      width: 100%; height: 100%;
+      object-fit: contain;
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        padding: 0 24px;
+      }
+
+      .news-header {
+        padding: 64px 24px;
+      }
+
+      .news-header h1 {
+        font-size: 36px;
+        letter-spacing: -0.02em;
+      }
+
+      .news-feed {
+        padding: 64px 24px;
+      }
+
+      .news-item {
+        padding: 24px;
+      }
+
+      .news-item h3 {
+        font-size: 22px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<nav id="navbar">
+  <a href="/" class="nav-logo">
+    <img src="../bound logo black.png" alt="Bound" style="height:28px; width:auto;" />
+  </a>
+  <ul class="nav-links">
+    <li><a href="javascript:void(0);" class="coming-soon"><span class="text">Docs</span><span class="coming-text">Coming Soon</span></a></li>
+    <li><a href="/news"><span class="text">News</span></a></li>
+    <li class="nav-social"><a href="https://x.com/Bound_Exchange" target="_blank" aria-label="Bound on X"><img src="../X26.png" alt="X" /></a></li>
+    <li><a href="javascript:void(0);" class="nav-cta coming-soon"><span class="text">Launch App</span><span class="coming-text">Coming Soon</span></a></li>
+  </ul>
+  <button class="mobile-menu-btn" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="news-feed" id="news-feed-container">
+  <!-- News items loaded here by JavaScript -->
+</div>
+
+<footer style="background: var(--color-paper); border-top: 1px solid var(--color-line); padding: 36px 64px; display: flex; align-items: center; justify-content: space-between; margin-top: 64px;">
+  <div style="display: flex; align-items: center; gap: 8px;">
+    <img src="../bound logo black.png" alt="Bound" style="height:28px; width:auto;" />
+  </div>
+  <div style="display: flex; gap: 28px; align-items: center;">
+    <a href="javascript:void(0);" class="coming-soon" style="font-family: var(--font-body); font-size: 14px; color: var(--color-text-secondary); text-decoration: none; transition: color 0.2s;"><span class="text">Docs</span><span class="coming-text">Coming Soon</span></a>
+    <a href="/news" style="font-family: var(--font-body); font-size: 14px; color: var(--color-text-secondary); text-decoration: none; transition: color 0.2s;">News</a>
+    <a href="https://x.com/Bound_Exchange" target="_blank" aria-label="Bound on X" class="social-icon" style="width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;"><img src="../X26.png" alt="X" style="width: 100%; height: 100%; object-fit: contain;" /></a>
+  </div>
+  <div style="font-family: var(--font-body); font-size: 13px; color: var(--color-disabled);">&copy; 2026 Bound. All rights reserved.</div>
+</footer>
+
+<script>
+  function renderNews(data) {
+    const container = document.getElementById('news-feed-container');
+    data.news_feed.forEach(article => {
+      const newsItem = document.createElement('a');
+      newsItem.href = article.x_url;
+      newsItem.target = '_blank';
+      newsItem.className = 'news-item';
+
+      newsItem.innerHTML = `
+        <div class="news-content">
+          <img src="${article.image}" alt="${article.title}" class="news-image" />
+          <div class="news-text">
+            <div class="news-date">${article.date_display}</div>
+            <h3>${article.title}</h3>
+            <p>${article.summary}</p>
+            <div style="display: flex; align-items: center; gap: 12px;">
+              <div class="news-category" style="background-color: ${article.category_color || '#FFB700'}; color: ${article.category_text_color || '#FFFFFF'};">${article.category}</div>
+              <span style="display: inline-block; font-size: 15px; font-weight: 600; color: var(--color-sage); text-decoration: underline; transition: all 0.2s ease;" class="read-link">Read on X →</span>
+            </div>
+          </div>
+        </div>
+      `;
+
+      container.appendChild(newsItem);
+    });
+  }
+
+  fetch('../news.json')
+    .then(response => {
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+      return response.json();
+    })
+    .then(data => renderNews(data))
+    .catch(error => {
+      console.error('Failed to load news.json:', error);
+      // Fallback to hardcoded data
+      renderNews({
+        news_feed: [
+          {
+            "date": "2026-04-23",
+            "date_display": "Apr 23, 2026",
+            "title": "Deeper Liquidity & Tighter Spreads on BTC Swaps with Bound's stablecoin bUSD",
+            "summary": "Atomic swaps with transparent inputs/outputs before signing, faster execution, and the deepest Bitcoin liquidity for BTC <> stablecoin swaps.",
+            "x_url": "https://x.com/radfi_btc/status/2047525100824707178",
+            "category": "Upgrade",
+            "category_color": "#FFB700",
+            "category_text_color": "#FFFFFF",
+            "image": "news1.png"
+          }
+        ]
+      });
+    });
+</script>
+
+</body>
+</html>

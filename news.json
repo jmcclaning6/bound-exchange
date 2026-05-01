@@ -1,0 +1,17 @@
+{
+  "news_feed": [
+    {
+      "date": "2026-04-23",
+      "date_display": "Apr 23, 2026",
+      "title": "Deeper Liquidity & Tighter Spreads on BTC Swaps with Bound's stablecoin bUSD",
+      "summary": "Atomic swaps with transparent inputs/outputs before signing, faster execution, and the deepest Bitcoin liquidity for BTC <> stablecoin swaps.",
+      "x_url": "https://x.com/radfi_btc/status/2047525100824707178",
+      "category": "Upgrade",
+      "category_color": "#FFB700",
+      "category_text_color": "#FFFFFF",
+      "image": "news1.png"
+    }
+  ],
+  "total_articles": 1,
+  "last_updated": "2026-04-30T00:00:00Z"
+}
