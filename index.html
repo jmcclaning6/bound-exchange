@@ -815,7 +815,7 @@
       height: 16px;
       display: block;
     }
-    .footer-links { display: flex; gap: 28px; }
+    .footer-links { display: flex; gap: 28px; align-items: center; }
     .footer-links a {
       font-family: var(--font-body);
       font-size: 14px; color: var(--color-text-secondary);
@@ -823,6 +823,27 @@
       transition: color 0.2s;
     }
     .footer-links a:hover { color: var(--color-ink); }
+    .social-icon {
+      width: 11px; height: 11px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .social-icon img {
+      width: 100%; height: 100%;
+      object-fit: contain;
+    }
+    .nav-social { display: flex; align-items: center; gap: 8px; }
+    .nav-social a {
+      width: 13px; height: 13px;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--color-text-secondary);
+      transition: color 0.2s;
+    }
+    .nav-social a:hover { color: var(--color-ink); }
+    .nav-social a img {
+      width: 100%; height: 100%;
+      object-fit: contain;
+    }
     .footer-copy {
       font-family: var(--font-body);
       font-size: 13px; color: var(--color-disabled);
@@ -935,6 +956,7 @@
   <ul class="nav-links">
     <li><a href="javascript:void(0);" class="coming-soon"><span class="text">Docs</span><span class="coming-text">Coming Soon</span></a></li>
     <li><a href="news.html"><span class="text">News</span></a></li>
+    <li class="nav-social"><a href="https://x.com/Bound_Exchange" target="_blank" aria-label="Bound on X"><img src="X26.png" alt="X" /></a></li>
     <li><a href="javascript:void(0);" class="nav-cta coming-soon"><span class="text">Launch App</span><span class="coming-text">Coming Soon</span></a></li>
   </ul>
   <button class="mobile-menu-btn" aria-label="Menu">
@@ -1164,6 +1186,8 @@
   </div>
   <div class="footer-links">
     <a href="javascript:void(0);" class="coming-soon"><span class="text">Docs</span><span class="coming-text">Coming Soon</span></a>
+    <a href="news.html">News</a>
+    <a href="https://x.com/Bound_Exchange" target="_blank" aria-label="Bound on X" class="social-icon"><img src="X26.png" alt="X" /></a>
   </div>
   <div class="footer-copy">&copy; 2026 Bound. All rights reserved.</div>
 </footer>
