@@ -307,6 +307,29 @@
       object-fit: contain;
     }
 
+    footer {
+      background: var(--color-paper);
+      border-top: 1px solid var(--color-line);
+      padding: 36px 64px;
+      display: flex; align-items: center; justify-content: space-between;
+      margin-top: 64px;
+    }
+    .footer-logo {
+      display: flex; align-items: center; gap: 8px;
+    }
+    .footer-links { display: flex; gap: 28px; align-items: center; }
+    .footer-links a {
+      font-family: var(--font-body);
+      font-size: 14px; color: var(--color-text-secondary);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--color-ink); }
+    .footer-copy {
+      font-family: var(--font-body);
+      font-size: 13px; color: var(--color-disabled);
+    }
+
     @media (max-width: 768px) {
       nav {
         padding: 0 24px;
@@ -349,6 +372,11 @@
       .news-item h3 {
         font-size: 22px;
       }
+
+      footer {
+        flex-direction: column; gap: 20px;
+        text-align: center; padding: 36px 24px;
+      }
     }
   </style>
 </head>
@@ -373,16 +401,16 @@
   <!-- News items loaded here by JavaScript -->
 </div>
 
-<footer style="background: var(--color-paper); border-top: 1px solid var(--color-line); padding: 36px 64px; display: flex; align-items: center; justify-content: space-between; margin-top: 64px;">
-  <div style="display: flex; align-items: center; gap: 8px;">
+<footer>
+  <div class="footer-logo">
     <img src="bound logo black.png" alt="Bound" style="height:28px; width:auto;" />
   </div>
-  <div style="display: flex; gap: 28px; align-items: center;">
-    <a href="https://docs.bound.exchange/bound-docs" target="_blank" style="font-family: var(--font-body); font-size: 14px; color: var(--color-text-secondary); text-decoration: none; transition: color 0.2s;">Docs</a>
-    <a href="/news" style="font-family: var(--font-body); font-size: 14px; color: var(--color-text-secondary); text-decoration: none; transition: color 0.2s;">News</a>
-    <a href="https://x.com/Bound_Exchange" target="_blank" aria-label="Bound on X" class="social-icon" style="width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;"><img src="X26.png" alt="X" style="width: 100%; height: 100%; object-fit: contain;" /></a>
+  <div class="footer-links">
+    <a href="https://docs.bound.exchange/bound-docs" target="_blank">Docs</a>
+    <a href="/news">News</a>
+    <a href="https://x.com/Bound_Exchange" target="_blank" aria-label="Bound on X" class="social-icon"><img src="X26.png" alt="X" /></a>
   </div>
-  <div style="font-family: var(--font-body); font-size: 13px; color: var(--color-disabled);">&copy; 2026 Bound. All rights reserved.</div>
+  <div class="footer-copy">&copy; 2026 Bound. All rights reserved.</div>
 </footer>
 
 <script>
