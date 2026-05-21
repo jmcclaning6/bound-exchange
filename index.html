@@ -902,6 +902,24 @@
     @media (max-width: 768px) {
       nav { padding: 0 24px; }
       .nav-links { display: none; }
+      .nav-links.open {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        position: fixed;
+        top: 64px; left: 0; right: 0;
+        background: rgba(247,247,247,0.98);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        padding: 24px 24px 32px;
+        gap: 20px;
+        border-top: 1px solid var(--color-line);
+        z-index: 199;
+        box-shadow: 0 8px 24px rgba(38,38,38,0.08);
+      }
+      .nav-links.open li { list-style: none; }
+      .nav-links.open a { font-size: 17px; }
+      .nav-links.open .nav-cta { width: 100%; text-align: center; justify-content: center; }
       .mobile-menu-btn { display: flex; }
 
       .hero { padding: 110px 24px 64px; }
@@ -1228,6 +1246,33 @@
 
   window.addEventListener('scroll', () => {
     document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 10);
+  });
+
+  /* ─── Mobile hamburger menu ─── */
+  const menuBtn = document.querySelector('.mobile-menu-btn');
+  const navLinks = document.querySelector('.nav-links');
+  menuBtn.addEventListener('click', () => {
+    navLinks.classList.toggle('open');
+    const isOpen = navLinks.classList.contains('open');
+    menuBtn.setAttribute('aria-expanded', isOpen);
+    // Animate hamburger → X
+    const spans = menuBtn.querySelectorAll('span');
+    if (isOpen) {
+      spans[0].style.transform = 'translateY(7px) rotate(45deg)';
+      spans[1].style.opacity = '0';
+      spans[2].style.transform = 'translateY(-7px) rotate(-45deg)';
+    } else {
+      spans[0].style.transform = '';
+      spans[1].style.opacity = '';
+      spans[2].style.transform = '';
+    }
+  });
+  // Close menu when a link is tapped
+  navLinks.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      navLinks.classList.remove('open');
+      menuBtn.querySelectorAll('span').forEach(s => { s.style.transform = ''; s.style.opacity = ''; });
+    });
   });
 
   document.querySelectorAll('a[href^="#"]').forEach(a => {
