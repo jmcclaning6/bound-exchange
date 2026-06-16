@@ -1,0 +1,83 @@
+{
+  "news_feed": [
+    {
+      "date": "2026-06-16",
+      "date_display": "Jun 16, 2026",
+      "title": "For the First Time Ever, Your Native BTC Can Buy Stocks",
+      "summary": "Trade real-world stocks directly from your Bitcoin wallet. Starting with $CRCLx, $TSLAx, $NVDAx, $MSTRx, $COINx — and more to come. Powered by Sodax × xStocks.",
+      "x_url": "https://x.com/Bound_Exchange/status/2066753302071738673",
+      "category": "Launch",
+      "category_color": "#FFB700",
+      "category_text_color": "#262626",
+      "image": "https://pbs.twimg.com/media/HK6OzC9bwAAbaEf?format=jpg&name=large"
+    },
+    {
+      "date": "2026-06-13",
+      "date_display": "Jun 13, 2026",
+      "title": "What's Shipping Next on Bound",
+      "summary": "xStocks integration, email + wallet sign-in, a custom Ordinal Indexer, better swap tracking, and a referral program that pays you 10% of Bound's revenue.",
+      "x_url": "https://x.com/Bound_Exchange/status/2065826528181797105",
+      "category": "Roadmap",
+      "category_color": "#262626",
+      "category_text_color": "#FFFFFF",
+      "image": "https://pbs.twimg.com/media/HKpcbIfb0AAU0zA?format=jpg&name=large"
+    },
+    {
+      "date": "2026-06-04",
+      "date_display": "Jun 4, 2026",
+      "title": "Bound Now Speaks Chinese",
+      "summary": "The Bound app now supports a full Chinese language interface. All DeFi features — swaps, loans, Ordinals — available in Chinese on app.bound.exchange.",
+      "x_url": "https://x.com/Bound_Exchange/status/2062362023460212829",
+      "category": "Feature",
+      "category_color": "#7A8F6A",
+      "category_text_color": "#FFFFFF",
+      "image": "https://pbs.twimg.com/media/HJ762sla0AAkBPp?format=jpg&name=large"
+    },
+    {
+      "date": "2026-06-03",
+      "date_display": "Jun 3, 2026",
+      "title": "Ordinals on Bound, Powered by Satflow",
+      "summary": "Buy, sell, and trade Bitcoin Ordinals directly from your self-custodial Bound account — no bridges, no intermediaries. Available now at app.bound.exchange/ordinals.",
+      "x_url": "https://x.com/Bound_Exchange/status/2062014021960945785",
+      "category": "Feature",
+      "category_color": "#7A8F6A",
+      "category_text_color": "#FFFFFF",
+      "image": "https://pbs.twimg.com/media/HJ2-zA6b0AAczZx?format=jpg&name=large"
+    },
+    {
+      "date": "2026-05-27",
+      "date_display": "May 27, 2026",
+      "title": "One Account for All Your Bitcoin Activity",
+      "summary": "Your Bitcoin setup shouldn't need a flowchart. Invest, borrow, swap, and earn from a single self-custodial account — no bridges, no juggling wallets.",
+      "x_url": "https://x.com/Bound_Exchange/status/2059783602549014933",
+      "category": "Product",
+      "category_color": "#E59A00",
+      "category_text_color": "#262626",
+      "image": "https://pbs.twimg.com/media/HJXPYc2boAAx_SD?format=jpg&name=large"
+    },
+    {
+      "date": "2026-05-26",
+      "date_display": "May 26, 2026",
+      "title": "No Liquidation. Ever. Keep Your Stack.",
+      "summary": "If BTC dips, walk away and keep the cash. If it moons, pay back and keep your stack. Fixed-rate, fixed-term BTC loans with no liquidations and no margin calls.",
+      "x_url": "https://x.com/Bound_Exchange/status/2059418135556718764",
+      "category": "Product",
+      "category_color": "#E59A00",
+      "category_text_color": "#262626",
+      "image": "https://pbs.twimg.com/media/HJSFt-dbkAA0bd9?format=jpg&name=large"
+    },
+    {
+      "date": "2026-05-20",
+      "date_display": "May 20, 2026",
+      "title": "Bitcoin Dropped 30%. Every BTC Loan Platform Liquidated Their Borrowers.",
+      "summary": "They sold the collateral, kept the proceeds, and sent borrowers a receipt. Legal. Expected. Baked into the architecture. Here's why Bound was built differently.",
+      "x_url": "https://x.com/Bound_Exchange/status/2057339190761984322",
+      "category": "Explainer",
+      "category_color": "#D3D4D1",
+      "category_text_color": "#262626",
+      "image": "may20.png"
+    }
+  ],
+  "total_articles": 7,
+  "last_updated": "2026-06-16T00:00:00Z"
+}
