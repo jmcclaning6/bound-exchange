@@ -166,9 +166,8 @@
       color: inherit;
       cursor: pointer;
       box-shadow: var(--shadow-1);
-      overflow: visible;
+      overflow: hidden;
       align-items: stretch;
-      min-height: 420px;
     }
 
     .news-item:hover {
@@ -182,15 +181,24 @@
       width: 100%;
     }
 
-    .news-image {
+    .news-image-wrap {
       width: 40%;
       flex-shrink: 0;
+      align-self: stretch;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      overflow: hidden;
+    }
+
+    .news-image {
+      width: 100%;
+      height: 100%;
       object-fit: contain;
       object-position: center;
       display: block;
-      align-self: center;
       border-radius: 10px;
-      margin: 16px;
     }
 
     .news-text {
@@ -308,9 +316,9 @@
       .news-header { padding: 48px 24px; }
       .news-header h1 { font-size: 36px; }
       .news-feed { padding: 32px 20px; }
-      .news-item { min-height: auto; overflow: hidden; }
       .news-content { flex-direction: column; }
-      .news-image { width: calc(100% - 24px); margin: 12px; }
+      .news-image-wrap { width: 100%; height: 280px; padding: 12px; align-self: auto; }
+      .news-image { width: auto; height: 100%; }
       .news-text { padding: 24px 20px; }
       .news-item h3 { font-size: 22px; }
       footer { flex-direction: column; gap: 20px; text-align: center; padding: 32px 20px; }
@@ -344,7 +352,7 @@
       <!-- Jun 16, 2026 -->
       <a class="news-item" href="https://x.com/Bound_Exchange/status/2066753302071738673" target="_blank" rel="noopener">
         <div class="news-content">
-          <img class="news-image" src="https://pbs.twimg.com/media/HK6OzC9bwAAbaEf?format=jpg&name=large" alt="Bitcoin to Wall Street — xStocks launch">
+          <div class="news-image-wrap"><img class="news-image" src="https://pbs.twimg.com/media/HK6OzC9bwAAbaEf?format=jpg&name=large" alt="Bitcoin to Wall Street — xStocks launch"></div>
           <div class="news-text">
             <div class="news-date">Jun 16, 2026</div>
             <h3>For the First Time Ever, Your Native BTC Can Buy Stocks</h3>
@@ -360,7 +368,7 @@
       <!-- Jun 13, 2026 -->
       <a class="news-item" href="https://x.com/Bound_Exchange/status/2065826528181797105" target="_blank" rel="noopener">
         <div class="news-content">
-          <img class="news-image" src="https://pbs.twimg.com/media/HKpcbIfb0AAU0zA?format=jpg&name=large" alt="What's shipping next on Bound">
+          <div class="news-image-wrap"><img class="news-image" src="https://pbs.twimg.com/media/HKpcbIfb0AAU0zA?format=jpg&name=large" alt="What's shipping next on Bound"></div>
           <div class="news-text">
             <div class="news-date">Jun 13, 2026</div>
             <h3>What's Shipping Next on Bound</h3>
@@ -376,7 +384,7 @@
       <!-- Jun 4, 2026 -->
       <a class="news-item" href="https://x.com/Bound_Exchange/status/2062362023460212829" target="_blank" rel="noopener">
         <div class="news-content">
-          <img class="news-image" src="https://pbs.twimg.com/media/HJ762sla0AAkBPp?format=jpg&name=large" alt="Bound Chinese interface">
+          <div class="news-image-wrap"><img class="news-image" src="https://pbs.twimg.com/media/HJ762sla0AAkBPp?format=jpg&name=large" alt="Bound Chinese interface"></div>
           <div class="news-text">
             <div class="news-date">Jun 4, 2026</div>
             <h3>Bound Now Speaks Chinese</h3>
@@ -392,7 +400,7 @@
       <!-- Jun 3, 2026 -->
       <a class="news-item" href="https://x.com/Bound_Exchange/status/2062014021960945785" target="_blank" rel="noopener">
         <div class="news-content">
-          <img class="news-image" src="https://pbs.twimg.com/media/HJ2-zA6b0AAczZx?format=jpg&name=large" alt="Ordinals on Bound">
+          <div class="news-image-wrap"><img class="news-image" src="https://pbs.twimg.com/media/HJ2-zA6b0AAczZx?format=jpg&name=large" alt="Ordinals on Bound"></div>
           <div class="news-text">
             <div class="news-date">Jun 3, 2026</div>
             <h3>Ordinals on Bound, Powered by Satflow</h3>
@@ -408,7 +416,7 @@
       <!-- May 27, 2026 -->
       <a class="news-item" href="https://x.com/Bound_Exchange/status/2059783602549014933" target="_blank" rel="noopener">
         <div class="news-content">
-          <img class="news-image" src="https://pbs.twimg.com/media/HJXPYc2boAAx_SD?format=jpg&name=large" alt="One account for all Bitcoin activity">
+          <div class="news-image-wrap"><img class="news-image" src="https://pbs.twimg.com/media/HJXPYc2boAAx_SD?format=jpg&name=large" alt="One account for all Bitcoin activity"></div>
           <div class="news-text">
             <div class="news-date">May 27, 2026</div>
             <h3>One Account for All Your Bitcoin Activity</h3>
@@ -424,7 +432,7 @@
       <!-- May 26, 2026 -->
       <a class="news-item" href="https://x.com/Bound_Exchange/status/2059418135556718764" target="_blank" rel="noopener">
         <div class="news-content">
-          <img class="news-image" src="https://pbs.twimg.com/media/HJSFt-dbkAA0bd9?format=jpg&name=large" alt="No Liquidation BTC Loans">
+          <div class="news-image-wrap"><img class="news-image" src="https://pbs.twimg.com/media/HJSFt-dbkAA0bd9?format=jpg&name=large" alt="No Liquidation BTC Loans"></div>
           <div class="news-text">
             <div class="news-date">May 26, 2026</div>
             <h3>No Liquidation. Ever. Keep Your Stack.</h3>
@@ -440,7 +448,7 @@
       <!-- May 20, 2026 -->
       <a class="news-item" href="https://x.com/Bound_Exchange/status/2057339190761984322" target="_blank" rel="noopener">
         <div class="news-content">
-          <img class="news-image" src="may20.png" alt="Bitcoin DeFi that can't liquidate you">
+          <div class="news-image-wrap"><img class="news-image" src="may20.png" alt="Bitcoin DeFi that can't liquidate you"></div>
           <div class="news-text">
             <div class="news-date">May 20, 2026</div>
             <h3>Bitcoin Dropped 30%. Every BTC Loan Platform Liquidated Their Borrowers.</h3>
