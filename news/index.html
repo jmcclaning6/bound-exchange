@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bound News</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --color-ink: #262626;
+      --color-paper: #F7F7F7;
+      --color-white: #FFFFFF;
+      --color-sun: #FFB700;
+      --color-amber: #E59A00;
+      --color-sage: #7A8F6A;
+      --color-line: #E8E8E8;
+      --color-gray: #D3D4D1;
+      --color-text-secondary: #5B5B5B;
+      --radius-xs: 10px;
+      --radius-s: 16px;
+      --radius-pill: 999px;
+      --shadow-1: 0 8px 24px rgba(38,38,38,0.06);
+      --shadow-2: 0 12px 32px rgba(38,38,38,0.08);
+      --font-headline: 'Inter', sans-serif;
+      --font-body: 'DM Sans', 'Inter', sans-serif;
+    }
+
+    body {
+      background: var(--color-paper);
+      color: var(--color-ink);
+      font-family: var(--font-body);
+      font-size: 18px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+      padding-top: 64px;
+    }
+
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 64px; height: 64px;
+      background: rgba(247,247,247,0.92);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      transition: box-shadow 0.3s;
+    }
+    nav.scrolled { box-shadow: 0 1px 24px rgba(38,38,38,0.06); }
+    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .nav-logo img { height: 22px; display: block; }
+    .nav-links { display: flex; align-items: center; gap: 36px; list-style: none; }
+    .nav-links a { font-family: var(--font-body); color: var(--color-text-secondary); text-decoration: none; font-size: 15px; font-weight: 500; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--color-ink); }
+    .nav-cta { background: var(--color-ink); color: var(--color-white) !important; padding: 10px 22px; border-radius: var(--radius-pill); font-size: 15px !important; font-weight: 600 !important; line-height: 1 !important; display: inline-flex; align-items: center; transition: opacity 0.2s, transform 0.2s; }
+    .nav-cta:hover { opacity: 0.88; transform: translateY(-1px); }
+    .nav-social { display: flex; align-items: center; gap: 8px; }
+    .nav-social a { width: 13px; height: 13px; display: flex; align-items: center; justify-content: center; }
+    .nav-social a img { width: 100%; height: 100%; object-fit: contain; }
+    .mobile-menu-btn { display: none; background: none; border: none; cursor: pointer; width: 40px; height: 40px; align-items: center; justify-content: center; flex-direction: column; gap: 5px; }
+    .mobile-menu-btn span { display: block; width: 22px; height: 2px; background: var(--color-ink); border-radius: 2px; transition: 0.3s; }
+
+    .news-feed { max-width: 960px; margin: 0 auto; padding: 64px 40px; }
+    .news-grid { display: flex; flex-direction: column; gap: 24px; }
+
+    .news-item {
+      background: var(--color-white);
+      border-radius: var(--radius-s);
+      border: 1px solid var(--color-line);
+      transition: all 0.3s ease;
+      display: flex;
+      flex-direction: row;
+      text-decoration: none;
+      color: inherit;
+      cursor: pointer;
+      box-shadow: var(--shadow-1);
+      overflow: hidden;
+    }
+    .news-item:hover { border-color: var(--color-sun); box-shadow: var(--shadow-2); }
+
+    .news-content { display: flex; flex-direction: row; width: 100%; align-items: stretch; }
+
+    /* Image is always a square — never crops, never overflows */
+    .news-image-wrap {
+      width: 40%;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+
+    .news-image {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: contain;
+      object-position: center;
+      display: block;
+      border-radius: 10px;
+    }
+
+    .news-text { flex: 1; padding: 36px 40px; display: flex; flex-direction: column; justify-content: center; }
+    .news-date { font-size: 12px; font-weight: 600; color: var(--color-sage); text-transform: uppercase; letter-spacing: 0.10em; line-height: 1.30; margin-bottom: 12px; }
+    .news-item h3 { font-family: var(--font-headline); font-size: 28px; font-weight: 800; line-height: 1.18; margin-bottom: 16px; color: var(--color-ink); letter-spacing: -0.01em; }
+    .news-item p { font-family: var(--font-body); font-size: 16px; color: var(--color-text-secondary); margin-bottom: 20px; line-height: 1.60; }
+    .news-item a { display: inline-block; font-size: 15px; font-weight: 600; color: var(--color-sage); text-decoration: underline; transition: all 0.2s ease; }
+    .news-item a:hover { color: var(--color-sage); transform: translateX(4px); }
+
+    .news-category { display: inline-block; font-size: 12px; font-weight: 900; border: none; padding: 4px 8px; border-radius: var(--radius-xs); margin-left: 12px; text-transform: uppercase; letter-spacing: 0.05em; font-family: var(--font-headline); }
+    .news-category.cat-launch   { background: var(--color-sun);   color: var(--color-ink); }
+    .news-category.cat-roadmap  { background: var(--color-ink);   color: var(--color-white); }
+    .news-category.cat-feature  { background: var(--color-sage);  color: var(--color-white); }
+    .news-category.cat-product  { background: var(--color-amber); color: var(--color-ink); }
+    .news-category.cat-explainer { background: var(--color-gray); color: var(--color-ink); }
+
+    .read-link { transition: all 0.2s ease; display: inline-block; }
+    .news-item:hover .read-link { transform: translateX(4px); }
+
+    footer { background: var(--color-paper); border-top: 1px solid var(--color-line); padding: 36px 64px; display: flex; align-items: center; justify-content: space-between; margin-top: 64px; }
+    .footer-logo { display: flex; align-items: center; gap: 8px; }
+    .footer-logo img { height: 18px; }
+    .footer-links { display: flex; gap: 28px; align-items: center; }
+    .footer-links a { font-family: var(--font-body); font-size: 14px; color: var(--color-text-secondary); text-decoration: none; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--color-ink); }
+    .footer-copy { font-family: var(--font-body); font-size: 14px; color: var(--color-text-secondary); }
+
+    @media (max-width: 768px) {
+      nav { padding: 0 20px; }
+      .nav-links { display: none; }
+      .mobile-menu-btn { display: flex; }
+      .news-feed { padding: 32px 20px; }
+      .news-content { flex-direction: column; }
+      .news-image-wrap { width: 100%; padding: 12px; }
+      .news-image { width: 100%; aspect-ratio: 1 / 1; }
+      .news-text { padding: 24px 20px; }
+      .news-item h3 { font-size: 22px; }
+      footer { flex-direction: column; gap: 20px; text-align: center; padding: 32px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav id="navbar">
+    <a class="nav-logo" href="/"><img src="/bound logo black.png" alt="Bound"></a>
+    <ul class="nav-links">
+      <li><a href="https://docs.bound.exchange/bound-docs">Docs</a></li>
+      <li><a href="/news">News</a></li>
+      <li class="nav-social"><a href="https://x.com/Bound_Exchange"><img src="/X26.png" alt="X"></a></li>
+      <li><a class="nav-cta" href="https://app.bound.exchange/trade">Launch App</a></li>
+    </ul>
+    <button class="mobile-menu-btn" aria-label="Menu"><span></span><span></span><span></span></button>
+  </nav>
+
+  <div class="news-feed">
+    <div class="news-grid">
+
+      <a class="news-item" href="https://x.com/Bound_Exchange/status/2066753302071738673" target="_blank" rel="noopener">
+        <div class="news-content">
+          <div class="news-image-wrap"><img class="news-image" src="https://pbs.twimg.com/media/HK6OzC9bwAAbaEf?format=jpg&name=large" alt="Bitcoin to Wall Street"></div>
+          <div class="news-text">
+            <div class="news-date">Jun 16, 2026</div>
+            <h3>For the First Time Ever, Your Native BTC Can Buy Stocks</h3>
+            <p>Trade real-world stocks directly from your Bitcoin wallet. Starting with $CRCLx, $TSLAx, $NVDAx, $MSTRx, $COINx — and more to come. Powered by Sodax × xStocks.</p>
+            <div><div class="news-category cat-launch">Launch</div><span class="read-link">&nbsp;&nbsp;Read on X →</span></div>
+          </div>
+        </div>
+      </a>
+
+      <a class="news-item" href="https://x.com/Bound_Exchange/status/2065826528181797105" target="_blank" rel="noopener">
+        <div class="news-content">
+          <div class="news-image-wrap"><img class="news-image" src="https://pbs.twimg.com/media/HKpcbIfb0AAU0zA?format=jpg&name=large" alt="What's shipping next on Bound"></div>
+          <div class="news-text">
+            <div class="news-date">Jun 13, 2026</div>
+            <h3>What's Shipping Next on Bound</h3>
+            <p>xStocks integration, email + wallet sign-in, a custom Ordinal Indexer, better swap tracking, and a referral program that pays you 10% of Bound's revenue.</p>
+            <div><div class="news-category cat-roadmap">Roadmap</div><span class="read-link">&nbsp;&nbsp;Read on X →</span></div>
+          </div>
+        </div>
+      </a>
+
+      <a class="news-item" href="https://x.com/Bound_Exchange/status/2062362023460212829" target="_blank" rel="noopener">
+        <div class="news-content">
+          <div class="news-image-wrap"><img class="news-image" src="https://pbs.twimg.com/media/HJ762sla0AAkBPp?format=jpg&name=large" alt="Bound Chinese interface"></div>
+          <div class="news-text">
+            <div class="news-date">Jun 4, 2026</div>
+            <h3>Bound Now Speaks Chinese</h3>
+            <p>The Bound app now supports a full Chinese language interface. All DeFi features — swaps, loans, Ordinals — available in Chinese on app.bound.exchange.</p>
+            <div><div class="news-category cat-feature">Feature</div><span class="read-link">&nbsp;&nbsp;Read on X →</span></div>
+          </div>
+        </div>
+      </a>
+
+      <a class="news-item" href="https://x.com/Bound_Exchange/status/2062014021960945785" target="_blank" rel="noopener">
+        <div class="news-content">
+          <div class="news-image-wrap"><img class="news-image" src="https://pbs.twimg.com/media/HJ2-zA6b0AAczZx?format=jpg&name=large" alt="Ordinals on Bound"></div>
+          <div class="news-text">
+            <div class="news-date">Jun 3, 2026</div>
+            <h3>Ordinals on Bound, Powered by Satflow</h3>
+            <p>Buy, sell, and trade Bitcoin Ordinals directly from your self-custodial Bound account — no bridges, no intermediaries. Available now at app.bound.exchange/ordinals.</p>
+            <div><div class="news-category cat-feature">Feature</div><span class="read-link">&nbsp;&nbsp;Read on X →</span></div>
+          </div>
+        </div>
+      </a>
+
+      <a class="news-item" href="https://x.com/Bound_Exchange/status/2059783602549014933" target="_blank" rel="noopener">
+        <div class="news-content">
+          <div class="news-image-wrap"><img class="news-image" src="https://pbs.twimg.com/media/HJXPYc2boAAx_SD?format=jpg&name=large" alt="One account for all Bitcoin activity"></div>
+          <div class="news-text">
+            <div class="news-date">May 27, 2026</div>
+            <h3>One Account for All Your Bitcoin Activity</h3>
+            <p>Your Bitcoin setup shouldn't need a flowchart. Invest, borrow, swap, and earn from a single self-custodial account — no bridges, no juggling wallets.</p>
+            <div><div class="news-category cat-product">Product</div><span class="read-link">&nbsp;&nbsp;Read on X →</span></div>
+          </div>
+        </div>
+      </a>
+
+      <a class="news-item" href="https://x.com/Bound_Exchange/status/2059418135556718764" target="_blank" rel="noopener">
+        <div class="news-content">
+          <div class="news-image-wrap"><img class="news-image" src="https://pbs.twimg.com/media/HJSFt-dbkAA0bd9?format=jpg&name=large" alt="No Liquidation BTC Loans"></div>
+          <div class="news-text">
+            <div class="news-date">May 26, 2026</div>
+            <h3>No Liquidation. Ever. Keep Your Stack.</h3>
+            <p>If BTC dips, walk away and keep the cash. If it moons, pay back and keep your stack. Fixed-rate, fixed-term BTC loans with no liquidations and no margin calls.</p>
+            <div><div class="news-category cat-product">Product</div><span class="read-link">&nbsp;&nbsp;Read on X →</span></div>
+          </div>
+        </div>
+      </a>
+
+      <a class="news-item" href="https://x.com/Bound_Exchange/status/2057339190761984322" target="_blank" rel="noopener">
+        <div class="news-content">
+          <div class="news-image-wrap"><img class="news-image" src="https://bound.exchange/News/may20.png" alt="Bitcoin DeFi that can't liquidate you"></div>
+          <div class="news-text">
+            <div class="news-date">May 20, 2026</div>
+            <h3>Bitcoin Dropped 30%. Every BTC Loan Platform Liquidated Their Borrowers.</h3>
+            <p>They sold the collateral, kept the proceeds, and sent borrowers a receipt. Legal. Expected. Baked into the architecture. Here's why Bound was built differently.</p>
+            <div><div class="news-category cat-explainer">Explainer</div><span class="read-link">&nbsp;&nbsp;Read on X →</span></div>
+          </div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-logo"><img src="/bound logo black.png" alt="Bound"></div>
+    <div class="footer-links">
+      <a href="https://docs.bound.exchange/bound-docs">Docs</a>
+      <a href="/news">News</a>
+      <a href="https://x.com/Bound_Exchange"><img src="/X26.png" alt="X" style="width:13px;height:13px;"></a>
+    </div>
+    <div class="footer-copy">© 2026 Bound. All rights reserved.</div>
+  </footer>
+
+  <script>
+    const nav = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 10);
+    });
+  </script>
+
+</body>
+</html>
