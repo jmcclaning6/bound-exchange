@@ -494,6 +494,270 @@
       border-top: 1px solid rgba(81, 177, 157, 0.1);
     }
 
+    /* Tools Section */
+    .tools-section {
+      padding: var(--space-64) 0;
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: var(--space-64);
+    }
+
+    .section-label {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--color-text-secondary);
+      margin-bottom: var(--space-16);
+    }
+
+    .section-header h2 {
+      font-size: 48px;
+      font-weight: 600;
+      margin-bottom: var(--space-24);
+      line-height: 1.2;
+    }
+
+    .tools-badge {
+      display: inline-block;
+      background: rgba(58, 93, 246, 0.1);
+      color: var(--color-blue);
+      padding: var(--space-8) var(--space-16);
+      border-radius: 20px;
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .tools-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: var(--space-32);
+    }
+
+    .tool-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(81, 177, 157, 0.1);
+      border-radius: 12px;
+      padding: var(--space-32);
+      transition: all 0.3s;
+    }
+
+    .tool-card:hover {
+      border-color: rgba(81, 177, 157, 0.3);
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .tool-card h4 {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: var(--space-12);
+      color: var(--color-white);
+    }
+
+    .tool-card p {
+      font-size: 14px;
+      color: var(--color-text-secondary);
+      margin-bottom: var(--space-16);
+      line-height: 1.6;
+    }
+
+    .tool-count {
+      display: inline-block;
+      font-size: 13px;
+      color: var(--color-text-secondary);
+      margin-right: var(--space-12);
+    }
+
+    .tool-tag {
+      display: inline-block;
+      background: rgba(58, 93, 246, 0.1);
+      color: var(--color-blue);
+      padding: var(--space-4) var(--space-12);
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* Agents Section */
+    .agents-section {
+      padding: var(--space-64) 0;
+      text-align: center;
+      background: rgba(255, 255, 255, 0.01);
+    }
+
+    .agent-icons {
+      display: flex;
+      justify-content: center;
+      gap: var(--space-24);
+      flex-wrap: wrap;
+      margin-top: var(--space-32);
+    }
+
+    .agent-icon {
+      width: 64px;
+      height: 64px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(81, 177, 157, 0.1);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+      transition: all 0.3s;
+    }
+
+    .agent-icon:hover {
+      border-color: rgba(81, 177, 157, 0.3);
+      background: rgba(81, 177, 157, 0.1);
+    }
+
+    /* Get Started Section */
+    .get-started-section {
+      padding: var(--space-64) 0;
+      background: rgba(81, 177, 157, 0.05);
+      text-align: center;
+    }
+
+    .get-started-section h2 {
+      font-size: 48px;
+      font-weight: 600;
+      margin-bottom: var(--space-24);
+    }
+
+    .get-started-section > .container > p:first-of-type {
+      font-size: 18px;
+      color: var(--color-text-secondary);
+      margin-bottom: var(--space-40);
+    }
+
+    .config-box {
+      background: rgba(23, 30, 57, 0.8);
+      border: 1px solid rgba(81, 177, 157, 0.2);
+      border-radius: 12px;
+      padding: var(--space-24);
+      margin-bottom: var(--space-32);
+      display: flex;
+      align-items: center;
+      gap: var(--space-16);
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .config-box code {
+      font-family: var(--font-mono);
+      font-size: 14px;
+      color: var(--color-text);
+      flex: 1;
+      overflow-x: auto;
+    }
+
+    .copy-btn-large {
+      background: var(--color-blue);
+      color: white;
+      border: 2px solid var(--color-blue);
+      padding: var(--space-12) var(--space-24);
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.3s;
+    }
+
+    .copy-btn-large:hover {
+      background: transparent;
+      color: var(--color-blue);
+    }
+
+    .questions-text {
+      font-size: 14px;
+      color: var(--color-text-secondary);
+    }
+
+    .questions-text a {
+      color: var(--color-blue);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .questions-text a:hover {
+      color: var(--color-teal);
+    }
+
+    /* Ask Section */
+    .ask-section {
+      padding: var(--space-64) 0;
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .ask-section .section-header {
+      margin-bottom: var(--space-48);
+    }
+
+    .ask-section h2 {
+      font-size: 48px;
+      font-weight: 600;
+      line-height: 1.2;
+    }
+
+    .prompt-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: var(--space-32);
+    }
+
+    .prompt-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(81, 177, 157, 0.1);
+      border-radius: 12px;
+      padding: var(--space-32);
+      transition: all 0.3s;
+    }
+
+    .prompt-card:hover {
+      border-color: rgba(81, 177, 157, 0.3);
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .prompt-card h4 {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: var(--space-16);
+      color: var(--color-white);
+    }
+
+    .prompt-card p {
+      font-size: 14px;
+      color: var(--color-text-secondary);
+      margin-bottom: var(--space-16);
+      font-style: italic;
+      line-height: 1.6;
+    }
+
+    .prompt-tags {
+      display: flex;
+      gap: var(--space-8);
+      flex-wrap: wrap;
+    }
+
+    .tag {
+      display: inline-block;
+      background: rgba(58, 93, 246, 0.1);
+      color: var(--color-blue);
+      padding: var(--space-6) var(--space-12);
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
     /* Responsive */
     @media (max-width: 768px) {
       .hero h1 {
@@ -706,6 +970,158 @@
     </div>
   </section>
 
+  <!-- Available Tools Section -->
+  <section class="tools-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">AVAILABLE TOOLS</span>
+        <h2>Everything your AI agent needs.</h2>
+        <div class="tools-badge">46 MCP tools · 8 groups</div>
+      </div>
+
+      <div class="tools-grid">
+        <div class="tool-card">
+          <h4>Voice & Guardrails</h4>
+          <p>Terminology rules, claims guidance, voice principles, and common mistakes</p>
+          <span class="tool-count">2 tools</span>
+          <span class="tool-tag">AUTO-SYNC</span>
+        </div>
+        <div class="tool-card">
+          <h4>Positioning & Narrative</h4>
+          <p>Canonical tagline, four-pillar distillation, and all 10 narrative pillars with emotional hooks</p>
+          <span class="tool-count">2 tools</span>
+          <span class="tool-tag">WIKI-SOURCED</span>
+        </div>
+        <div class="tool-card">
+          <h4>Brand Assets</h4>
+          <p>Colors, typography, logo variants, bunny mascot files, and usage guidelines</p>
+          <span class="tool-count">9 tools</span>
+          <span class="tool-tag">AUTO-SYNC</span>
+        </div>
+        <div class="tool-card">
+          <h4>Technical Glossary</h4>
+          <p>Boundary Contracts, Perpetuals, HyperEVM, Settlement mechanics, and more — with plain-language translations</p>
+          <span class="tool-count">7 tools</span>
+          <span class="tool-tag">AUTO-SYNC</span>
+        </div>
+        <div class="tool-card">
+          <h4>Sitemap</h4>
+          <p>Official canonical URLs — prevents linking to impostor domains</p>
+          <span class="tool-count">3 tools</span>
+          <span class="tool-tag">BOUND.EXCHANGE</span>
+        </div>
+        <div class="tool-card">
+          <h4>News Feed</h4>
+          <p>Latest articles, announcements, partnership news, and product updates from Bound</p>
+          <span class="tool-count">4 tools</span>
+          <span class="tool-tag">AUTO-SYNC</span>
+        </div>
+        <div class="tool-card">
+          <h4>Boilerplate Descriptions</h4>
+          <p>Pre-approved copy for press kits, social bios, listings, and partner materials</p>
+          <span class="tool-count">6 tools</span>
+          <span class="tool-tag">AUTO-SYNC</span>
+        </div>
+        <div class="tool-card">
+          <h4>Audience Messaging</h4>
+          <p>Full messaging profiles for Traders, Developers, Risk Managers, and institutional partners</p>
+          <span class="tool-count">5 tools</span>
+          <span class="tool-tag">WIKI-SOURCED</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Agents Section -->
+  <section class="agents-section">
+    <div class="container">
+      <span class="section-label">WORKS WITH THESE AGENTS & MORE</span>
+      <div class="agent-icons">
+        <div class="agent-icon">🤖</div>
+        <div class="agent-icon">🧠</div>
+        <div class="agent-icon">⚙️</div>
+        <div class="agent-icon">🔗</div>
+        <div class="agent-icon">📊</div>
+        <div class="agent-icon">🎯</div>
+        <div class="agent-icon">✨</div>
+        <div class="agent-icon">🚀</div>
+        <div class="agent-icon">🦅</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Get Started Section -->
+  <section class="get-started-section">
+    <div class="container">
+      <h2>Get started. Skip the setup.</h2>
+      <p>Connect your AI assistant to Bound's MCP with one simple configuration.</p>
+      <div class="config-box">
+        <code>{ "mcpServers": { "bound-marketing": { "url": "https://marketing.bound.exchange/mcp" } } }</code>
+        <button class="copy-btn-large" onclick="copyConfig()">Copy</button>
+      </div>
+      <p class="questions-text">Questions? <a href="https://x.com/bound_exchange" target="_blank">Contact us on X ↗</a></p>
+    </div>
+  </section>
+
+  <!-- What Can You Ask Section -->
+  <section class="ask-section">
+    <div class="container">
+      <span class="section-label">WHAT CAN YOU ASK?</span>
+      <h2>Example prompts for partners, traders, and developers building with Bound.</h2>
+
+      <div class="prompt-grid">
+        <div class="prompt-card">
+          <h4>Understand Boundary Mechanics</h4>
+          <p>"Explain how boundary perpetual contracts differ from standard perpetuals. What advantages do they offer to risk-averse traders?"</p>
+          <div class="prompt-tags">
+            <span class="tag">Glossary</span>
+            <span class="tag">Voice & Guardrails</span>
+          </div>
+        </div>
+        <div class="prompt-card">
+          <h4>Calculate Payoff Scenarios</h4>
+          <p>"Help me create a detailed payoff diagram for a boundary contract with a $50K upper bound and $40K lower bound. What's the max profit and loss?"</p>
+          <div class="prompt-tags">
+            <span class="tag">Technical Glossary</span>
+            <span class="tag">Boilerplate</span>
+          </div>
+        </div>
+        <div class="prompt-card">
+          <h4>Risk Management Strategy</h4>
+          <p>"Which boundary contract structure would suit a trader who wants defined risk exposure? Compare defined-risk vs liquidation-based perpetuals."</p>
+          <div class="prompt-tags">
+            <span class="tag">Glossary</span>
+            <span class="tag">Audience Messaging</span>
+          </div>
+        </div>
+        <div class="prompt-card">
+          <h4>Integration Guide</h4>
+          <p>"How do I integrate Bound's boundary perpetual contracts into my trading platform? What does the settlement flow look like on HyperEVM?"</p>
+          <div class="prompt-tags">
+            <span class="tag">Technical Glossary</span>
+            <span class="tag">Positioning & Narrative</span>
+          </div>
+        </div>
+        <div class="prompt-card">
+          <h4>Market Analysis</h4>
+          <p>"Write a blog post about how boundary contracts are reshaping the derivatives market for institutional traders seeking structured products."</p>
+          <div class="prompt-tags">
+            <span class="tag">Boilerplate</span>
+            <span class="tag">Brand Assets</span>
+          </div>
+        </div>
+        <div class="prompt-card">
+          <h4>Compliance & Documentation</h4>
+          <p>"What compliance considerations apply to boundary perpetual contracts? Help me draft documentation for a new trading product launch."</p>
+          <div class="prompt-tags">
+            <span class="tag">Boilerplate</span>
+            <span class="tag">Audience Messaging</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Footer -->
   <footer>
     <div class="footer-container">
@@ -743,6 +1159,20 @@
         btn.style.background = 'var(--color-teal)';
         setTimeout(() => {
           btn.textContent = 'Copy URL';
+          btn.style.background = 'var(--color-blue)';
+        }, 2000);
+      });
+    }
+
+    function copyConfig() {
+      const config = '{ "mcpServers": { "bound-marketing": { "url": "https://marketing.bound.exchange/mcp" } } }';
+      navigator.clipboard.writeText(config).then(() => {
+        const btn = event.target;
+        const originalText = btn.textContent;
+        btn.textContent = 'Copied!';
+        btn.style.background = 'var(--color-teal)';
+        setTimeout(() => {
+          btn.textContent = originalText;
           btn.style.background = 'var(--color-blue)';
         }, 2000);
       });
