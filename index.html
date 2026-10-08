@@ -326,6 +326,9 @@ h1,h2,h3,h4{
   transform:translateY(112%);
   animation:maskUp 1s var(--ease) .05s forwards;
 }
+.hero-cycle{ display:block; overflow:hidden; height:1.08em; }
+.hero-cycle-track{ display:flex; flex-direction:column; transform:translateY(calc(var(--step, 0) * -1.08em)); }
+.hero-cycle-word{ display:block; height:1.08em; line-height:1.08; overflow:hidden; color:var(--emerald-light); white-space:nowrap; }
 @keyframes maskUp{
   from{ transform:translateY(112%); }
   to{ transform:translateY(0); }
@@ -1036,7 +1039,14 @@ footer .nav-text-link:hover, footer .nav-icon:hover{ color:#3a5df6; opacity:1; }
 
   <div class="wrap hero-grid">
     <div class="hero-body">
-      <div class="hero-mask"><h1>The Exchange for Price Paths</h1></div>
+      <div class="hero-mask"><h1>Boundaries are<span class="hero-cycle"><span class="hero-cycle-track" id="heroCycleTrack">
+        <span class="hero-cycle-word">Simple</span>
+        <span class="hero-cycle-word">Perpetual</span>
+        <span class="hero-cycle-word">Expressive</span>
+        <span class="hero-cycle-word">Social</span>
+        <span class="hero-cycle-word">Intuitive</span>
+        <span class="hero-cycle-word" aria-hidden="true">Simple</span>
+      </span></span></h1></div>
       <p class="hero-sub">Pick a market. Predict the price path. Go from chart to trade easier than ever.</p>
       <div class="hero-cta">
         <a href="https://app.bound.exchange/which-first" target="_blank" rel="noopener" class="btn btn--primary">Launch App</a>
@@ -1681,6 +1691,30 @@ footer .nav-text-link:hover, footer .nav-icon:hover{ color:#3a5df6; opacity:1; }
 <script>
 if ('scrollRestoration' in history) { history.scrollRestoration = 'manual'; }
 window.scrollTo(0, 0);
+
+// hero headline word cycler — "Boundaries are [word]". The track holds the
+// real word list plus a duplicate of the first word at the end, so we can
+// animate straight through into that duplicate and then snap back to 0
+// with the transition disabled — reads as a seamless infinite loop.
+(function(){
+  const track = document.getElementById('heroCycleTrack');
+  if (!track) return;
+  const total = track.querySelectorAll('.hero-cycle-word').length - 1; // excludes the trailing duplicate
+  let step = 0;
+  function advance(){
+    step++;
+    track.style.transition = 'transform .6s var(--ease)';
+    track.style.setProperty('--step', step);
+    if (step === total) {
+      setTimeout(() => {
+        track.style.transition = 'none';
+        step = 0;
+        track.style.setProperty('--step', step);
+      }, 650);
+    }
+  }
+  setInterval(advance, 2200);
+})();
 
 // up/down ticket boxes — click to pick a side (defaults to up). The multiplier and
 // total return follow the side: same 500 USDC stake, fair odds from the same entry price.
