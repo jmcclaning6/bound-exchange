@@ -1084,10 +1084,10 @@ footer .nav-text-link:hover, footer .nav-icon:hover{ color:#3a5df6; opacity:1; }
         <div class="how-visual-item" data-visual="0">
           <div class="ticket">
             <div class="market-picker-head">Select Market</div>
-            <div class="market-row is-selected"><span class="dot"></span><span class="name">BTC-USD</span><span class="price">$112,340</span><span class="check">✓</span></div>
-            <div class="market-row"><span class="dot"></span><span class="name">ETH-USD</span><span class="price">$4,180</span><span class="check">✓</span></div>
-            <div class="market-row"><span class="dot"></span><span class="name">SOL-USD</span><span class="price">$212</span><span class="check">✓</span></div>
-            <div class="market-row"><span class="dot"></span><span class="name">HYPE-USD</span><span class="price">$41</span><span class="check">✓</span></div>
+            <div class="market-row is-selected"><span class="dot"></span><span class="name">BTC-USD</span><span class="price" data-coin="bitcoin">$108,420</span><span class="check">✓</span></div>
+            <div class="market-row"><span class="dot"></span><span class="name">ETH-USD</span><span class="price" data-coin="ethereum">$3,870</span><span class="check">✓</span></div>
+            <div class="market-row"><span class="dot"></span><span class="name">SOL-USD</span><span class="price" data-coin="solana">$188</span><span class="check">✓</span></div>
+            <div class="market-row"><span class="dot"></span><span class="name">HYPE-USD</span><span class="price" data-coin="hyperliquid">$38</span><span class="check">✓</span></div>
           </div>
         </div>
 
@@ -2123,6 +2123,46 @@ function cornerMark(container, x, y, size, color, opacity){
   m.setAttribute('stroke-width','2'); m.setAttribute('opacity', opacity);
   container.appendChild(m);
 }
+
+// "Select Market" price list (step 01 visual) — fetches real prices from
+// CoinGecko's public API and caches them in localStorage for 24h, so the
+// page only re-fetches once a day rather than on every load. If the fetch
+// fails (offline, rate-limited, CORS hiccup) the static fallback prices
+// already in the HTML are left exactly as they are — no error shown.
+(function(){
+  const priceEls = document.querySelectorAll('.market-row .price[data-coin]');
+  if (!priceEls.length) return;
+  const CACHE_KEY = 'boundMarketPrices';
+  const DAY_MS = 24 * 60 * 60 * 1000;
+
+  function fmt(v){
+    return '$' + Math.round(v).toLocaleString('en-US');
+  }
+  function applyPrices(prices){
+    priceEls.forEach(el => {
+      const p = prices[el.dataset.coin];
+      if (typeof p === 'number') el.textContent = fmt(p);
+    });
+  }
+
+  let cached = null;
+  try { cached = JSON.parse(localStorage.getItem(CACHE_KEY)); } catch(e) {}
+  if (cached && cached.prices && Date.now() - cached.timestamp < DAY_MS) {
+    applyPrices(cached.prices);
+    return;
+  }
+
+  const ids = [...priceEls].map(el => el.dataset.coin).filter((v,i,a) => a.indexOf(v) === i).join(',');
+  fetch(`https://api.coingecko.com/api/v3/simple/price?ids=${ids}&vs_currencies=usd`)
+    .then(res => res.ok ? res.json() : Promise.reject(res.status))
+    .then(data => {
+      const prices = {};
+      for (const id in data) prices[id] = data[id].usd;
+      applyPrices(prices);
+      try { localStorage.setItem(CACHE_KEY, JSON.stringify({ timestamp: Date.now(), prices })); } catch(e) {}
+    })
+    .catch(() => {}); // keep the static fallback already in the HTML
+})();
 
 // live markets strip — randomized example quotes, reflective of roughly
 // current market prices, regenerated on every load. Not real open positions.
