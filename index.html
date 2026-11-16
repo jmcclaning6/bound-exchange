@@ -108,6 +108,15 @@ h1,h2,h3,h4{
 .section--deep{background:var(--deep);}
 
 .section--mono{background:var(--paper); color:var(--mono-ink); position:relative; z-index:1;}
+footer{ position:relative; z-index:1; }
+/* hero -> How it works: the hero stays pinned and this section slides up OVER it with a slanted top edge.
+   Pure CSS (no scroll handler moving a clip-path), so it can't lag or tear on phones. */
+#how{
+  --slant:clamp(48px, 9vw, 120px);
+  clip-path:polygon(0 var(--slant), 100% 0, 100% 100%, 0 100%);
+  padding-top:calc(100px + var(--slant) * 0.5);
+}
+@media(max-width:900px){ #how{ padding-top:calc(64px + var(--slant) * 0.5); } }
 .section--mono .section-title{color:var(--mono-ink);}
 .section--mono .section-note{color:rgba(17,24,39,0.6);}
 .section--mono .section-subtitle{color:rgba(17,24,39,0.62);}
@@ -255,7 +264,7 @@ h1,h2,h3,h4{
 .hero{
   position:sticky;
   top:0;
-  z-index:5;
+  z-index:0;
   min-height:100vh;
   padding:120px 0 80px;
   display:flex; flex-direction:column; justify-content:center;
@@ -264,7 +273,6 @@ h1,h2,h3,h4{
     radial-gradient(900px 600px at 78% 8%, rgba(58,93,246,0.24), transparent 60%),
     radial-gradient(700px 500px at 0% 90%, rgba(28,36,68,0.6), transparent 60%),
     var(--void);
-  will-change:clip-path;
 }
 
 /* ambient pong-style background — a ball volleys between a teal top paddle
@@ -1834,7 +1842,7 @@ document.querySelectorAll('.ticket-boxes').forEach(group => {
 const nav = document.getElementById('nav');
 const navHeroEl = document.querySelector('.hero');
 function updateNavScrolled(){
-  nav.classList.toggle('is-scrolled', window.scrollY > navHeroEl.offsetHeight - 40);
+  nav.classList.toggle('is-scrolled', window.scrollY > (window.__heroH || navHeroEl.offsetHeight) - 40);
 }
 window.addEventListener('scroll', updateNavScrolled, { passive:true });
 window.addEventListener('resize', updateNavScrolled);
@@ -1862,7 +1870,7 @@ navMobileMenu.querySelectorAll('a').forEach(a => {
   });
 });
 
-// hero diagonal wipe — sticky hero clips away with an angled edge as section 2 scrolls up beneath it.
+// hero -> section 2 transition (see the #how CSS). Hero geometry is measured here once and cached.
 // The reveal boundary must never move faster than section 2's own physical
 // top edge (which arrives at exactly (1-progress)*100% down the viewport) —
 // otherwise the clip-path exposes empty space behind the hero before
@@ -1890,54 +1898,26 @@ let heroVH = smallVH();
 let heroH = heroEl.offsetHeight, heroDw = 0;
 function heroEnd(){ return heroH + heroDw; }                              // scroll position where the hero has fully wiped away
 function syncHeroSticky(){
-  heroH = heroEl.offsetHeight;
+  heroH = heroEl.offsetHeight; window.__heroH = heroH;
   const tall = heroH > heroVH + 2;
   heroDw = tall ? Math.round(heroVH * 0.6) : 0;
   heroEl.style.top = tall ? (heroVH - heroH) + 'px' : '';
   heroEl.style.marginBottom = tall ? heroDw + 'px' : '';
 }
-function computeHeroWipe(){
-  const h = heroH;
-  if (h > heroVH + 2) {
-    const wipeStart = h + heroDw - heroVH;                            // the next section's top edge enters the screen
-    const progress = Math.min(1, Math.max(0, (window.scrollY - wipeStart) / heroVH));
-    const remaining = 1 - progress;
-    const base = h - heroVH;                                               // hero-local y of the top of the visible window
-    const rightY = base + remaining * heroVH;
-    const leftY = base + Math.pow(remaining, 0.7) * heroVH;
-    return `polygon(0 0, 100% 0, 100% ${rightY.toFixed(1)}px, 0 ${leftY.toFixed(1)}px)`;
-  }
-  const distance = h;
-  const progress = Math.min(1, Math.max(0, window.scrollY / distance));
-  const remaining = 1 - progress;
-  const rightY = remaining * 100;            // exactly in sync with scroll — clears first
-  const leftY = Math.pow(remaining, 0.7) * 100; // lags behind for the diagonal, still hits 0 exactly at progress=1
-  return `polygon(0% 0%, 100% 0%, 100% ${rightY}%, 0% ${leftY}%)`;
-}
-
-let wipeTicking = false;
-let lastWipe = '', heroGone = false;
-function updateWipes(){
-  wipeTicking = false;
-  const w = computeHeroWipe();
-  if (w !== lastWipe) { lastWipe = w; heroEl.style.clipPath = w; }
-  // once the diagonal wipe has fully cleared the hero there is nothing to see, so stop painting it (incl. its blurred ticket)
-  const gone = window.scrollY >= heroEnd();
+// the next section covers the hero with a CSS-only slanted edge; once it fully covers it, stop painting the hero (and its blurred ticket)
+let heroSlant = Math.min(120, Math.max(48, window.innerWidth * 0.09)), heroGone = false;
+function updateHeroGone(){
+  const gone = window.scrollY >= heroEnd() + heroSlant + 2;
   if (gone !== heroGone) { heroGone = gone; heroEl.style.visibility = gone ? 'hidden' : ''; }
 }
-function requestWipeUpdate(){
-  if (wipeTicking) return;
-  wipeTicking = true;
-  requestAnimationFrame(updateWipes);
-}
-window.addEventListener('scroll', requestWipeUpdate, { passive:true });
+window.addEventListener('scroll', updateHeroGone, { passive:true });
 window.addEventListener('resize', () => {
-  if (window.innerWidth !== heroVW) { heroVW = window.innerWidth; heroVH = smallVH(); }   // ignore height-only changes (mobile toolbar)
-  syncHeroSticky(); requestWipeUpdate();
+  if (window.innerWidth !== heroVW) { heroVW = window.innerWidth; heroVH = smallVH(); heroSlant = Math.min(120, Math.max(48, window.innerWidth * 0.09)); }   // ignore height-only changes (mobile toolbar)
+  syncHeroSticky(); updateHeroGone();
 });
-if (window.ResizeObserver) new ResizeObserver(() => { syncHeroSticky(); requestWipeUpdate(); }).observe(heroEl);
+if (window.ResizeObserver) new ResizeObserver(() => { syncHeroSticky(); updateHeroGone(); }).observe(heroEl);
 syncHeroSticky();
-updateWipes();
+updateHeroGone();
 
 // snap-to-section-2: the FIRST hint of scroll intent near the hero/section-2
 // boundary immediately triggers the full native smooth-scroll to whichever
