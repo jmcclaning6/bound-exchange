@@ -1194,7 +1194,7 @@ footer .nav-text-link:hover, footer .nav-icon:hover{ color:#3a5df6; opacity:1; }
         <span class="hero-cycle-word">Intuitive</span>
         <span class="hero-cycle-word" aria-hidden="true">Simple</span>
       </span></span></h1></div>
-      <p class="hero-sub">The payoff of an option, the simplicity of a perp, with liquidity at every price.</p>
+      <p class="hero-sub">The liquidity of perps. Composability of options. Built on Hyperliquid.</p>
       <div class="hero-cta">
         <a href="https://beta.bound.exchange/" target="_blank" rel="noopener" class="btn btn--primary">Launch App</a>
       </div>
@@ -1846,8 +1846,41 @@ navMobileMenu.querySelectorAll('a').forEach(a => {
 // bounded by `remaining` (=1-progress, the exact 1:1 rate); the diagonal
 // comes from easing the left edge to lag behind without ever overshooting.
 const heroEl = document.querySelector('.hero');
+// small-viewport height (what is left with the mobile browser toolbar showing); falls back to innerHeight
+let heroVW = window.innerWidth;
+function smallVH(){
+  const probe = document.createElement('div');
+  probe.style.cssText = 'position:fixed;top:0;left:0;width:0;height:100svh;visibility:hidden;pointer-events:none';
+  document.body.appendChild(probe);
+  const h = probe.offsetHeight || window.innerHeight;
+  probe.remove();
+  return Math.min(h, window.innerHeight) || window.innerHeight;
+}
+let heroVH = smallVH();
+// when the hero is taller than the screen (phones: headline, button AND the ticket stack up), a plain sticky hero pins at its
+// top and the bottom of the ticket can never be scrolled into view. So pin it by its BOTTOM edge instead: it scrolls normally
+// until the whole ticket is on screen, and only then does it stick and the diagonal wipe begin.
+// ...and it then HOLDS there for a stretch of scrolling (extra space below the hero) so the whole ticket is readable before the wipe starts
+function heroDwell(){ return heroEl.offsetHeight > heroVH + 2 ? Math.round(heroVH * 0.6) : 0; }
+function heroEnd(){ return heroEl.offsetHeight + heroDwell(); }          // scroll position where the hero has fully wiped away
+function syncHeroSticky(){
+  const h = heroEl.offsetHeight;
+  const tall = h > heroVH + 2;
+  heroEl.style.top = tall ? (heroVH - h) + 'px' : '';
+  heroEl.style.marginBottom = tall ? heroDwell() + 'px' : '';
+}
 function computeHeroWipe(){
-  const distance = heroEl.offsetHeight;
+  const h = heroEl.offsetHeight;
+  if (h > heroVH + 2) {
+    const wipeStart = h + heroDwell() - heroVH;                            // the next section's top edge enters the screen
+    const progress = Math.min(1, Math.max(0, (window.scrollY - wipeStart) / heroVH));
+    const remaining = 1 - progress;
+    const base = h - heroVH;                                               // hero-local y of the top of the visible window
+    const rightY = base + remaining * heroVH;
+    const leftY = base + Math.pow(remaining, 0.7) * heroVH;
+    return `polygon(0 0, 100% 0, 100% ${rightY.toFixed(1)}px, 0 ${leftY.toFixed(1)}px)`;
+  }
+  const distance = h;
   const progress = Math.min(1, Math.max(0, window.scrollY / distance));
   const remaining = 1 - progress;
   const rightY = remaining * 100;            // exactly in sync with scroll — clears first
@@ -1862,7 +1895,7 @@ function updateWipes(){
   const w = computeHeroWipe();
   if (w !== lastWipe) { lastWipe = w; heroEl.style.clipPath = w; }
   // once the diagonal wipe has fully cleared the hero there is nothing to see, so stop painting it (incl. its blurred ticket)
-  const gone = window.scrollY >= heroEl.offsetHeight;
+  const gone = window.scrollY >= heroEnd();
   if (gone !== heroGone) { heroGone = gone; heroEl.style.visibility = gone ? 'hidden' : ''; }
 }
 function requestWipeUpdate(){
@@ -1871,7 +1904,12 @@ function requestWipeUpdate(){
   requestAnimationFrame(updateWipes);
 }
 window.addEventListener('scroll', requestWipeUpdate, { passive:true });
-window.addEventListener('resize', requestWipeUpdate);
+window.addEventListener('resize', () => {
+  if (window.innerWidth !== heroVW) { heroVW = window.innerWidth; heroVH = smallVH(); }   // ignore height-only changes (mobile toolbar)
+  syncHeroSticky(); requestWipeUpdate();
+});
+if (window.ResizeObserver) new ResizeObserver(() => { syncHeroSticky(); requestWipeUpdate(); }).observe(heroEl);
+syncHeroSticky();
 updateWipes();
 
 // snap-to-section-2: the FIRST hint of scroll intent near the hero/section-2
@@ -2338,7 +2376,7 @@ function paintDots(ctx, dots, now, ball, influence){
 
   // stops entirely once the hero is scrolled out of view (or the tab is hidden) and restarts on scroll-back
   let rafId = 0, heroH = hero.offsetHeight;
-  const heroOn = () => !document.hidden && window.scrollY < heroH;
+  const heroOn = () => !document.hidden && window.scrollY < heroEnd();
   function loop(now){
     rafId = 0;
     if (!heroOn()) return;
@@ -2428,33 +2466,55 @@ function paintDots(ctx, dots, now, ball, influence){
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     }
 
-    function draw(now){
+    // the grid is painted ONCE per resize (a full-size canvas that redraws every frame is what made scrolling choppy);
+    // the twinkle is a few tiny elements animated with opacity/transform only, which the compositor handles for free
+    function draw(){
       ctx.clearRect(0, 0, W, H);
-      paintDots(ctx, dots, now, null, 0);
+      paintDots(ctx, dots, 0, null, 0);
     }
 
-    // only animates while on screen, capped at ~30fps (the twinkle is slow, so it reads the same)
     const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion:reduce)').matches;
-    let visible = false, rafId = 0, lastDraw = 0;
+    const layer = document.createElement('div');
+    layer.setAttribute('aria-hidden', 'true');
+    layer.style.cssText = 'position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden';
+    canvas.insertAdjacentElement('afterend', layer);
+    const POOL = 14, sparks = [];
+    for (let i = 0; i < POOL; i++){
+      const e = document.createElement('i');
+      e.style.cssText = 'position:absolute;left:0;top:0;width:3px;height:3px;margin:-1.5px 0 0 -1.5px;border-radius:50%;opacity:0;will-change:opacity,transform;box-shadow:0 0 6px rgba(255,255,255,0.85)';
+      layer.appendChild(e);
+      sparks.push(e);
+    }
+    let visible = false, timer = 0, n = 0;
+    function spawn(){
+      if (!dots.length) return;
+      const d = dots[(Math.random() * dots.length) | 0];
+      const e = sparks[n++ % POOL];
+      const c = DOT_RGB[d.colorType];
+      e.style.left = d.x + 'px';
+      e.style.top = d.y + 'px';
+      e.style.background = 'rgb(' + c[0] + ',' + c[1] + ',' + c[2] + ')';
+      e.animate(
+        [{ opacity:0, transform:'scale(.6)' }, { opacity:1, transform:'scale(1.5)', offset:0.45 }, { opacity:0, transform:'scale(.6)' }],
+        { duration: 550 + Math.random() * 600, easing:'ease-in-out' }
+      );
+    }
+    function sync(){
+      const on = visible && !document.hidden && !reduce;
+      if (on && !timer) timer = setInterval(spawn, 110);
+      else if (!on && timer){ clearInterval(timer); timer = 0; }
+    }
 
     function onResize(){
       W = host.clientWidth; H = host.clientHeight;
       resizeCanvas();
       buildDots();
-      draw(performance.now());
+      draw();
     }
     window.addEventListener('resize', onResize);
     onResize();
-
-    function loop(now){
-      rafId = 0;
-      if (!visible || document.hidden || reduce) return;
-      if (now - lastDraw >= 32){ lastDraw = now; draw(now); }
-      rafId = requestAnimationFrame(loop);
-    }
-    function wake(){ if (!rafId && visible && !document.hidden && !reduce) rafId = requestAnimationFrame(loop); }
-    new IntersectionObserver(es => { visible = es[0].isIntersecting; wake(); }).observe(host);
-    document.addEventListener('visibilitychange', wake);
+    new IntersectionObserver(es => { visible = es[0].isIntersecting; sync(); }).observe(host);
+    document.addEventListener('visibilitychange', sync);
   }
 
   document.querySelectorAll('canvas.dot-field').forEach(setup);
@@ -2939,7 +2999,7 @@ const BoundPrices = (function(){
     if (window.ResizeObserver) new ResizeObserver(measure).observe(track);
     window.addEventListener('resize', measure);
     let tId = 0;
-    const tOn = () => !document.hidden && window.scrollY < heroEl.offsetHeight;
+    const tOn = () => !document.hidden && window.scrollY < heroEnd();
     function frame(t){
       tId = 0;
       if (!tOn()) { last = 0; return; }
