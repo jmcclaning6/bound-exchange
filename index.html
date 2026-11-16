@@ -1175,11 +1175,16 @@ footer .nav-text-link:hover, footer .nav-icon:hover{ color:#3a5df6; opacity:1; }
 .sym-opt[data-sym="BTC"]::before{ background-image:var(--tok-BTC); }
 .sym-opt[data-sym="ETH"]::before{ background-image:var(--tok-ETH); }
 .sym-opt[data-sym="SOL"]::before{ background-image:var(--tok-SOL); }
-/* phones: tighter gaps between sections (under "Close early anytime", and above "Turn calls into clout") */
+/* phones: every section title gets the same breathing room as "Only possible on Hyperliquid infrastructure"
+   (about 174px from the previous content down to the title, about 74px from the title to its first content) */
 @media(max-width:900px){
   #how{ padding-bottom:20px; }
-  #versus{ padding-top:70px; }
-  #social{ padding-top:70px; }
+  #versus{ padding-top:154px; }
+  #social{ padding-top:138px; }
+  #how .section-head{ margin-bottom:96px; }
+  #versus .section-head{ margin-bottom:68px; }
+  #novelty .section-head{ margin-bottom:17px; }
+  .invest-col .section-title{ margin-bottom:14px; }
 }
 </style>
 </head>
