@@ -901,7 +901,7 @@ a.live-quote{ color:inherit; text-decoration:none; cursor:pointer; }
   .invest-col .section-title{ order:0; margin-bottom:0; }
   .invest-grid .post-card{ order:1; }
   .invest-col .invest-list{ order:2; }
-  .invest-col .cta-band{ order:3; }
+  .invest-col .cta-band{ order:3; margin-top:16px; }
 }
 
 .post-card{
@@ -1886,18 +1886,20 @@ let heroVH = smallVH();
 // top and the bottom of the ticket can never be scrolled into view. So pin it by its BOTTOM edge instead: it scrolls normally
 // until the whole ticket is on screen, and only then does it stick and the diagonal wipe begin.
 // ...and it then HOLDS there for a stretch of scrolling (extra space below the hero) so the whole ticket is readable before the wipe starts
-function heroDwell(){ return heroEl.offsetHeight > heroVH + 2 ? Math.round(heroVH * 0.6) : 0; }
-function heroEnd(){ return heroEl.offsetHeight + heroDwell(); }          // scroll position where the hero has fully wiped away
+// heights are cached (refreshed on resize) so the per-scroll / per-frame code never forces a layout
+let heroH = heroEl.offsetHeight, heroDw = 0;
+function heroEnd(){ return heroH + heroDw; }                              // scroll position where the hero has fully wiped away
 function syncHeroSticky(){
-  const h = heroEl.offsetHeight;
-  const tall = h > heroVH + 2;
-  heroEl.style.top = tall ? (heroVH - h) + 'px' : '';
-  heroEl.style.marginBottom = tall ? heroDwell() + 'px' : '';
+  heroH = heroEl.offsetHeight;
+  const tall = heroH > heroVH + 2;
+  heroDw = tall ? Math.round(heroVH * 0.6) : 0;
+  heroEl.style.top = tall ? (heroVH - heroH) + 'px' : '';
+  heroEl.style.marginBottom = tall ? heroDw + 'px' : '';
 }
 function computeHeroWipe(){
-  const h = heroEl.offsetHeight;
+  const h = heroH;
   if (h > heroVH + 2) {
-    const wipeStart = h + heroDwell() - heroVH;                            // the next section's top edge enters the screen
+    const wipeStart = h + heroDw - heroVH;                            // the next section's top edge enters the screen
     const progress = Math.min(1, Math.max(0, (window.scrollY - wipeStart) / heroVH));
     const remaining = 1 - progress;
     const base = h - heroVH;                                               // hero-local y of the top of the visible window
@@ -2400,14 +2402,18 @@ function paintDots(ctx, dots, now, ball, influence){
   }
 
   // stops entirely once the hero is scrolled out of view (or the tab is hidden) and restarts on scroll-back
-  let rafId = 0, heroH = hero.offsetHeight;
+  let rafId = 0, heroH = hero.offsetHeight, frameN = 0, scrollQuietAt = 0;
+  window.addEventListener('scroll', () => { scrollQuietAt = performance.now() + 140; }, { passive:true });
   const heroOn = () => !document.hidden && window.scrollY < heroEnd();
   function loop(now){
     rafId = 0;
     if (!heroOn()) return;
     updatePaddles();
     updateBall();
-    drawBackground(now || performance.now());
+    // while the page is being scrolled, repaint the big dot canvas at a third of the rate (the ball and paddles keep full speed);
+    // redrawing it every frame on top of the scroll wipe is what made the hero -> How it works scroll stutter
+    const t = now || performance.now();
+    if (t > scrollQuietAt || (frameN++ % 3) === 0) drawBackground(t);
     render();
     rafId = requestAnimationFrame(loop);
   }
