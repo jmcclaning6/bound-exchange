@@ -160,7 +160,7 @@ footer{ position:relative; z-index:1; }
   position:fixed; top:0; left:0; right:0; z-index:100;
   display:flex; align-items:center; justify-content:space-between;
   padding:18px 100px;
-  transition:background .4s var(--ease), border-color .4s var(--ease), padding .4s var(--ease);
+  transition:background .25s var(--ease), border-color .25s var(--ease), padding .25s var(--ease);
   border-bottom:1px solid transparent;
 }
 .nav.is-scrolled{
@@ -1842,7 +1842,7 @@ document.querySelectorAll('.ticket-boxes').forEach(group => {
 const nav = document.getElementById('nav');
 const navHeroEl = document.querySelector('.hero');
 function updateNavScrolled(){
-  nav.classList.toggle('is-scrolled', window.scrollY > (window.__heroH || navHeroEl.offsetHeight) - 40);
+  nav.classList.toggle('is-scrolled', window.scrollY > 4);   // background appears as soon as scrolling starts
 }
 window.addEventListener('scroll', updateNavScrolled, { passive:true });
 window.addEventListener('resize', updateNavScrolled);
