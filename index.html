@@ -892,6 +892,14 @@ a.live-quote{ color:inherit; text-decoration:none; cursor:pointer; }
 .invest-col{ width:100%; padding-left:28px; }
 @media(max-width:900px){ .invest-col{ padding-left:0; } }
 .invest-col .section-title{ margin-bottom:54px; }
+/* phones: headline first, then the chart card, then the copy/flip points and the CTA */
+@media(max-width:900px){
+  .invest-col{ display:contents; }
+  .invest-col .section-title{ order:0; margin-bottom:0; }
+  .invest-grid .post-card{ order:1; }
+  .invest-col .invest-list{ order:2; }
+  .invest-col .cta-band{ order:3; }
+}
 
 .post-card{
   background:var(--surface); border:1px solid var(--line); border-radius:var(--radius-l);
