@@ -1089,12 +1089,12 @@ footer .nav-text-link:hover, footer .nav-icon:hover{ color:#3a5df6; opacity:1; }
           <p>Any asset listed on Bound.</p>
         </div>
         <div class="step-label" data-step="1">
-          <div class="step-head"><span class="n">02</span><h3>Set two bounds</h3></div>
+          <div class="step-head"><span class="n">02</span><h3>Set two boundaries</h3></div>
           <p>A target and a loss, at exact price levels.</p>
         </div>
         <div class="step-label" data-step="2">
           <div class="step-head"><span class="n">03</span><h3>Take the quote</h3></div>
-          <p>Fixed payout, locked the moment you open. First bound touched settles it.</p>
+          <p>Fixed payout, locked the moment you open. First boundary touched settles it.</p>
         </div>
       </div>
 
@@ -1143,7 +1143,7 @@ footer .nav-text-link:hover, footer .nav-icon:hover{ color:#3a5df6; opacity:1; }
 
   <div class="wrap how-callout-wrap">
     <div class="misread-callout reveal">
-      <div><b>No expiry</b><p>Unlimited time to be right — the position stays open until a bound is touched or you close it.</p></div>
+      <div><b>No expiry</b><p>Unlimited time to be right — the position stays open until a boundary is touched or you close it.</p></div>
       <div><b>Fixed payout</b><p>Know your max loss and your payout before you open.</p></div>
       <div><b>Close early anytime</b><p>Accept a quoted buyback whenever you want out.</p></div>
     </div>
@@ -1218,7 +1218,7 @@ footer .nav-text-link:hover, footer .nav-icon:hover{ color:#3a5df6; opacity:1; }
       <div class="reveal reveal-delay-1">
         <div class="mini-steps">
           <div class="mini-step"><span class="dot"></span><div>
-            <p><b>Price path parlays.</b> Go from chart to trade in a single experience. Chart any path of a single asset with multiple targets and loss levels strung together. Bound handles the execution.</p>
+            <p><b>Price Paths.</b> Go from chart to trade in a single experience. Chart any path of a single asset with multiple targets and loss levels strung together. Bound handles the execution.</p>
             <div class="mini-substeps">
               <p><b>The round trip.</b> Up through the high, then back through the low. Paid only when price sweeps both extremes in order.</p>
               <p><b>Crab market.</b> Invest in a choppy market bouncing between support and resistance. More legs leads to a higher multiplier.</p>
@@ -1357,7 +1357,7 @@ footer .nav-text-link:hover, footer .nav-icon:hover{ color:#3a5df6; opacity:1; }
         </svg>
         <div class="strategy-text">
           <h3>Tail Hedge</h3>
-          <p>Holding BTC? A small stake that pays out if price falls to your target, covering the drawdown.</p>
+          <p>Holding BTC? A small position that pays out if price falls to your target, covering the drawdown.</p>
         </div>
       </div>
       <div class="strategy-card reveal reveal-scale reveal-delay-2">
@@ -1417,7 +1417,7 @@ footer .nav-text-link:hover, footer .nav-icon:hover{ color:#3a5df6; opacity:1; }
         </svg>
         <div class="strategy-text">
           <h3>Lottery Ticket</h3>
-          <p>Tight loss level, far target. A small stake for a high multiple when a big move comes.</p>
+          <p>Tight loss level, far target. A small position for a high multiple when a big move comes.</p>
         </div>
       </div>
       <div class="strategy-card reveal reveal-scale reveal-delay-2">
@@ -1612,19 +1612,19 @@ if ('scrollRestoration' in history) { history.scrollRestoration = 'manual'; }
 window.scrollTo(0, 0);
 
 // up/down ticket boxes — click to pick a side (defaults to up). The multiplier and
-// total return follow the side: same 500 USDC stake, fair odds from the same entry price.
+// total return follow the side: same 500 USDC size, fair odds from the same entry price.
 document.querySelectorAll('.ticket-boxes').forEach(group => {
   const boxes = group.querySelectorAll('.tbox');
   const ticket = group.closest('.ticket');
   const amt = ticket && ticket.querySelector('.ticket-return .amt');
   const mult = ticket && ticket.querySelector('.ticket-return .mult');
-  const stake = 500;
+  const size = 500;
   function select(box){
     boxes.forEach(b => b.classList.remove('is-selected'));
     box.classList.add('is-selected');
     const m = parseFloat(box.dataset.mult);
     if (amt && mult && m) {
-      amt.textContent = '$' + (stake * m).toLocaleString('en-US', { minimumFractionDigits:2, maximumFractionDigits:2 });
+      amt.textContent = '$' + (size * m).toLocaleString('en-US', { minimumFractionDigits:2, maximumFractionDigits:2 });
       mult.textContent = m.toFixed(2) + '×';
     }
   }

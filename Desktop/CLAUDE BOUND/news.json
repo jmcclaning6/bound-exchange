@@ -1,83 +1,279 @@
 {
+  "last_updated": "2026-09-24",
+  "source": "https://x.com/Bound_Exchange/highlights",
+  "sync_note": "Curated feed. Items after 2026-06-23 were added from Bound's public X profile (only the newest posts are visible without logging in; Highlights and older posts need a logged-in session). Check https://x.com/Bound_Exchange for anything newer.",
   "news_feed": [
     {
-      "date": "2026-06-16",
-      "date_display": "Jun 16, 2026",
-      "title": "For the First Time Ever, Your Native BTC Can Buy Stocks",
-      "summary": "Trade real-world stocks directly from your Bitcoin wallet. Starting with $CRCLx, $TSLAx, $NVDAx, $MSTRx, $COINx — and more to come. Powered by Sodax × xStocks.",
-      "x_url": "https://x.com/Bound_Exchange/status/2066753302071738673",
+      "id": "2102447113934360674",
+      "date": "2026-09-22",
+      "date_display": "Sep 22, 2026",
+      "title": "Bound Coming Soon: A New DeFi Primitive on Hyperliquid",
       "category": "Launch",
-      "category_color": "#FFB700",
-      "category_text_color": "#262626",
-      "image": "https://pbs.twimg.com/media/HK6OzC9bwAAbaEf?format=jpg&name=large"
+      "category_color": "#dcfce7",
+      "category_text_color": "#16a34a",
+      "summary": "Bound announces it is coming soon: a new DeFi primitive on Hyperliquid, with a short teaser video.",
+      "url": "https://x.com/Bound_Exchange/status/2102447113934360674",
+      "tags": [
+        "boundaries",
+        "hyperliquid",
+        "coming-soon"
+      ]
     },
     {
-      "date": "2026-06-13",
+      "id": "2100605988487537038",
+      "date": "2026-09-17",
+      "date_display": "Sep 17, 2026",
+      "title": "Elysium Means Tighter Hedge Costs and Better Quotes",
+      "category": "Community",
+      "category_color": "#f3e8ff",
+      "category_text_color": "#7e22ce",
+      "summary": "Bound quotes a founder's read of Elysium's Phase 2 docs: faster market-data reads for contracts on HyperEVM mean tighter hedge costs, better quotes and less protocol risk for Bound.",
+      "url": "https://x.com/Bound_Exchange/status/2100605988487537038",
+      "tags": [
+        "hyperevm",
+        "elysium",
+        "pricing"
+      ]
+    },
+    {
+      "id": "2100302223297351982",
+      "date": "2026-09-16",
+      "date_display": "Sep 16, 2026",
+      "title": "We Live for Volatility",
+      "category": "Community",
+      "category_color": "#f3e8ff",
+      "category_text_color": "#7e22ce",
+      "summary": "Short video post, quote-posting Point Farm Capital: \"we live for this price action/volatility.\"",
+      "url": "https://x.com/Bound_Exchange/status/2100302223297351982",
+      "tags": [
+        "volatility",
+        "community"
+      ]
+    },
+    {
+      "id": "2090203567919657375",
+      "date": "2026-08-19",
+      "date_display": "Aug 19, 2026",
+      "title": "Boundary Perpetual Contracts: Coming Soon to bound.exchange",
+      "category": "Product Update",
+      "category_color": "#e0f2fe",
+      "category_text_color": "#0369a1",
+      "summary": "Pinned teaser video: Boundary Perpetual Contracts, a new financial primitive only made possible by HyperEVM. Coming soon to bound.exchange.",
+      "url": "https://x.com/Bound_Exchange/status/2090203567919657375",
+      "tags": [
+        "boundary-perps",
+        "hyperevm",
+        "coming-soon",
+        "pinned"
+      ]
+    },
+    {
+      "id": "2081951404026171750",
+      "date": "2026-07-27",
+      "date_display": "Jul 27, 2026",
+      "title": "Which First Is Live: Private Beta, Email-Free Login, and Native-to-Native Swaps",
+      "category": "Product Update",
+      "category_color": "#e0f2fe",
+      "category_text_color": "#0369a1",
+      "summary": "Which First (Binary Perps) is live in private beta: pick a market, set two boundaries, and call which gets hit first. Gated access, referral required. Launch markets: ETH, SOL, BTC, HYPE, SPCX, NVDA, WTIOIL. Same day: email-free login (secure your account with a wallet signature or passkey) and direct native-to-native swaps with no BTC routing.",
+      "url": "https://x.com/Bound_Exchange/status/2081951404026171750",
+      "tags": [
+        "which-first",
+        "binary-perps",
+        "private-beta",
+        "hyperliquid",
+        "email-free",
+        "wallet",
+        "passkey",
+        "swaps"
+      ]
+    },
+    {
+      "id": "2067447578380370170",
+      "date": "2026-06-18T03:21:28.000Z",
+      "date_display": "Jun 18, 2026",
+      "title": "Secure Your Bound Account With a Wallet You Already Own",
+      "category": "Product Update",
+      "category_color": "#e0f2fe",
+      "category_text_color": "#0369a1",
+      "summary": "Bound now lets you register and secure your account using a wallet you already own — no new wallet setup required. Sign up at app.bound.exchange/register.",
+      "url": "https://x.com/Bound_Exchange/status/2067447578380370170",
+      "tags": [
+        "wallet",
+        "security",
+        "passkey",
+        "onboarding",
+        "self-custody"
+      ]
+    },
+    {
+      "id": "2066753302071738673",
+      "date": "2026-06-16T05:22:40.000Z",
+      "date_display": "Jun 16, 2026",
+      "title": "xStocks Launch — Native BTC Buys Stocks",
+      "category": "Product Launch",
+      "category_color": "#FFB700",
+      "category_text_color": "#262626",
+      "summary": "For the 1st time ever, native BTC can buy stocks. Starting with $CRCLx, $TSLAx, $NVDAx, $MSTRx, $COINx, and more. Powered by SODAX × xStocksFi.",
+      "url": "https://x.com/Bound_Exchange/status/2066753302071738673",
+      "tags": [
+        "xStocks",
+        "product-launch",
+        "BTC",
+        "stocks"
+      ]
+    },
+    {
+      "id": "2065826528181797105",
+      "date": "2026-06-13T16:00:00.000Z",
       "date_display": "Jun 13, 2026",
-      "title": "What's Shipping Next on Bound",
-      "summary": "xStocks integration, email + wallet sign-in, a custom Ordinal Indexer, better swap tracking, and a referral program that pays you 10% of Bound's revenue.",
-      "x_url": "https://x.com/Bound_Exchange/status/2065826528181797105",
+      "title": "Shipping Next: xStocks, Email Sign-In, Ordinal Indexer, Referral Program",
       "category": "Roadmap",
       "category_color": "#262626",
       "category_text_color": "#FFFFFF",
-      "image": "https://pbs.twimg.com/media/HKpcbIfb0AAU0zA?format=jpg&name=large"
+      "summary": "Upcoming releases: xStocks integration, email + wallet sign-in, Custom Ordinal Indexer, better swap tracking, and a Referral Program (earn 10% of Bound's revenue).",
+      "url": "https://x.com/Bound_Exchange/status/2065826528181797105",
+      "tags": [
+        "roadmap",
+        "xStocks",
+        "referral",
+        "ordinals"
+      ]
     },
     {
-      "date": "2026-06-04",
+      "id": "2062362023460212829",
+      "date": "2026-06-04T02:33:17.000Z",
       "date_display": "Jun 4, 2026",
-      "title": "Bound Now Speaks Chinese",
-      "summary": "The Bound app now supports a full Chinese language interface. All DeFi features — swaps, loans, Ordinals — available in Chinese on app.bound.exchange.",
-      "x_url": "https://x.com/Bound_Exchange/status/2062362023460212829",
-      "category": "Feature",
+      "title": "Chinese Language Support Now Live",
+      "category": "Feature Update",
       "category_color": "#7A8F6A",
       "category_text_color": "#FFFFFF",
-      "image": "https://pbs.twimg.com/media/HJ762sla0AAkBPp?format=jpg&name=large"
+      "summary": "Bound now supports a full Chinese (中文) interface. Buy, sell, trade in English and 中文 at app.bound.exchange.",
+      "url": "https://x.com/Bound_Exchange/status/2062362023460212829",
+      "tags": [
+        "feature",
+        "localization",
+        "chinese",
+        "community"
+      ]
     },
     {
-      "date": "2026-06-03",
+      "id": "2062014021960945785",
+      "date": "2026-06-03T03:30:27.000Z",
       "date_display": "Jun 3, 2026",
-      "title": "Ordinals on Bound, Powered by Satflow",
-      "summary": "Buy, sell, and trade Bitcoin Ordinals directly from your self-custodial Bound account — no bridges, no intermediaries. Available now at app.bound.exchange/ordinals.",
-      "x_url": "https://x.com/Bound_Exchange/status/2062014021960945785",
-      "category": "Feature",
+      "title": "Ordinals Now on Bound — Powered by Satflow",
+      "category": "Feature Update",
       "category_color": "#7A8F6A",
       "category_text_color": "#FFFFFF",
-      "image": "https://pbs.twimg.com/media/HJ2-zA6b0AAczZx?format=jpg&name=large"
+      "summary": "Ordinals. Bound to Bound. Browse and trade Ordinals natively at app.bound.exchange/ordinals, powered by Satflow.",
+      "url": "https://x.com/Bound_Exchange/status/2062014021960945785",
+      "tags": [
+        "ordinals",
+        "feature",
+        "bitcoin-native-assets"
+      ]
     },
     {
-      "date": "2026-05-27",
+      "id": "2059783602549014933",
+      "date": "2026-05-27T23:47:34.000Z",
       "date_display": "May 27, 2026",
-      "title": "One Account for All Your Bitcoin Activity",
-      "summary": "Your Bitcoin setup shouldn't need a flowchart. Invest, borrow, swap, and earn from a single self-custodial account — no bridges, no juggling wallets.",
-      "x_url": "https://x.com/Bound_Exchange/status/2059783602549014933",
-      "category": "Product",
-      "category_color": "#E59A00",
-      "category_text_color": "#262626",
-      "image": "https://pbs.twimg.com/media/HJXPYc2boAAx_SD?format=jpg&name=large"
+      "title": "One Account Does It All on Bound",
+      "category": "Feature Update",
+      "category_color": "#7A8F6A",
+      "category_text_color": "#FFFFFF",
+      "summary": "Your Bitcoin setup shouldn't need a flowchart. Bound consolidates everything into one account — swap, borrow, earn, and more at bound.exchange.",
+      "url": "https://x.com/Bound_Exchange/status/2059783602549014933",
+      "tags": [
+        "feature",
+        "product",
+        "ux",
+        "bitcoin"
+      ]
     },
     {
-      "date": "2026-05-26",
+      "id": "2059418135556718764",
+      "date": "2026-05-26T23:35:20.000Z",
       "date_display": "May 26, 2026",
-      "title": "No Liquidation. Ever. Keep Your Stack.",
-      "summary": "If BTC dips, walk away and keep the cash. If it moons, pay back and keep your stack. Fixed-rate, fixed-term BTC loans with no liquidations and no margin calls.",
-      "x_url": "https://x.com/Bound_Exchange/status/2059418135556718764",
-      "category": "Product",
-      "category_color": "#E59A00",
-      "category_text_color": "#262626",
-      "image": "https://pbs.twimg.com/media/HJSFt-dbkAA0bd9?format=jpg&name=large"
+      "title": "No Liquidation. Ever. — BTC-Backed Loans on Bound",
+      "category": "Education",
+      "category_color": "#fef9c3",
+      "category_text_color": "#854d0e",
+      "summary": "If BTC dips, walk away and keep the cash. If it moons, pay back and keep your stack. Bound's loans have no liquidation risk — ever. Borrow at app.bound.exchange/borrow.",
+      "url": "https://x.com/Bound_Exchange/status/2059418135556718764",
+      "tags": [
+        "loans",
+        "no-liquidation",
+        "borrow",
+        "education"
+      ]
     },
     {
-      "date": "2026-05-20",
-      "date_display": "May 20, 2026",
-      "title": "Bitcoin Dropped 30%. Every BTC Loan Platform Liquidated Their Borrowers.",
-      "summary": "They sold the collateral, kept the proceeds, and sent borrowers a receipt. Legal. Expected. Baked into the architecture. Here's why Bound was built differently.",
-      "x_url": "https://x.com/Bound_Exchange/status/2057339190761984322",
-      "category": "Explainer",
-      "category_color": "#D3D4D1",
-      "category_text_color": "#262626",
-      "image": "may20.png"
+      "id": "2057339190761984322",
+      "date": "2026-05-21T05:54:21.000Z",
+      "date_display": "May 21, 2026",
+      "title": "Thread: Why Liquidation-Free Loans Exist",
+      "category": "Education",
+      "category_color": "#fef9c3",
+      "category_text_color": "#854d0e",
+      "summary": "Bitcoin dropped 30% in a day — every BTC-backed loan liquidated borrowers, sold their collateral, and kept the proceeds. Bound's fixed-rate, no-liquidation loans exist because this is broken by design.",
+      "url": "https://x.com/Bound_Exchange/status/2057339190761984322",
+      "tags": [
+        "loans",
+        "education",
+        "no-liquidation",
+        "self-custody"
+      ]
+    },
+    {
+      "id": "1925590826941559077",
+      "date": "2025-05-22T16:33:23.000Z",
+      "date_display": "May 22, 2025",
+      "title": "bUSD Launch — First Dollar-Backed Stablecoin on Bitcoin",
+      "category": "Milestone",
+      "category_color": "#ffedd5",
+      "category_text_color": "#c2410c",
+      "summary": "Introducing bUSD: the first dollar-backed stablecoin on Bitcoin. No bridges. No wraps. No exchanges. Just real dollars on real Bitcoin. (Note: originally announced under the radFi brand, now Bound.)",
+      "url": "https://x.com/Bound_Exchange/status/1925590826941559077",
+      "tags": [
+        "bUSD",
+        "stablecoin",
+        "launch",
+        "historical"
+      ]
+    },
+    {
+      "id": "1857119408923312507",
+      "date": "2024-11-14T17:52:25.000Z",
+      "date_display": "Nov 14, 2024",
+      "title": "Video: What Problem Is Bound's Bitcoin Stablecoin Solving?",
+      "category": "Education",
+      "category_color": "#fef9c3",
+      "category_text_color": "#854d0e",
+      "summary": "Explainer video on the problem bUSD solves: a native Bitcoin stablecoin with no bridges, no wraps, no off-chain dependencies.",
+      "url": "https://x.com/Bound_Exchange/status/1857119408923312507",
+      "tags": [
+        "bUSD",
+        "stablecoin",
+        "education",
+        "historical"
+      ]
+    },
+    {
+      "id": "1844084795317575836",
+      "date": "2024-10-09T18:37:31.000Z",
+      "date_display": "Oct 9, 2024",
+      "title": "Announcing bUSD — Bitcoin's First Dollar-Backed Stablecoin",
+      "category": "Milestone",
+      "category_color": "#ffedd5",
+      "category_text_color": "#c2410c",
+      "summary": "Bound (then early-stage) introduces bUSD: a better form of money built on the best store of value. The original announcement of the Bitcoin-native stablecoin.",
+      "url": "https://x.com/Bound_Exchange/status/1844084795317575836",
+      "tags": [
+        "bUSD",
+        "stablecoin",
+        "announcement",
+        "historical"
+      ]
     }
-  ],
-  "total_articles": 7,
-  "last_updated": "2026-06-16T00:00:00Z"
+  ]
 }

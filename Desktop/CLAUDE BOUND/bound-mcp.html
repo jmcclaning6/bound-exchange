@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bound - Boundary Perpetual Contracts</title>
+  <title>Bound Marketing MCP Server</title>
   <link rel="icon" type="image/png" href="favicon-blue-png.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Saira:wght@600;700;800;900&family=Public+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     :root {
       --color-bg: #0f1419;
@@ -31,6 +31,7 @@
       --space-40: 40px;
       --space-48: 48px;
       --space-64: 64px;
+      --radius-pill: 999px;
     }
 
     * {
@@ -180,7 +181,7 @@
     .hero p {
       font-size: 15px;
       font-family: var(--font-body);
-      font-weight: 300;
+      font-weight: 400;
       color: var(--color-white);
       margin-bottom: var(--space-32);
       max-width: 600px;
@@ -224,7 +225,7 @@
       color: var(--color-white);
       border: none;
       padding: var(--space-12) var(--space-24);
-      border-radius: 8px;
+      border-radius: var(--radius-pill);
       font-weight: 600;
       cursor: pointer;
       transition: all 0.2s;
@@ -246,11 +247,11 @@
 
     .cta-button {
       padding: var(--space-12) var(--space-24);
-      border-radius: 8px;
+      border-radius: var(--radius-pill);
       font-weight: 600;
       text-decoration: none;
       transition: all 0.2s;
-      border: 2px solid transparent;
+      border: 1.5px solid transparent;
       cursor: pointer;
       font-size: 15px;
       min-height: 44px;
@@ -260,17 +261,18 @@
     }
 
     .cta-primary {
-      background: var(--color-blue);
+      background: transparent;
+      border-color: var(--color-blue);
       color: var(--color-white);
     }
 
     .cta-primary:hover {
-      background: #2e51d9;
+      background: rgba(58, 93, 246, 0.14);
       transform: translateY(-2px);
     }
 
     .cta-secondary {
-      border: 2px solid var(--color-blue);
+      border: 1.5px solid var(--color-blue);
       color: var(--color-white);
       background: transparent;
     }
@@ -457,7 +459,7 @@
     /* Footer */
     footer {
       background: var(--color-black);
-      padding: var(--space-64) var(--space-32);
+      padding: var(--space-32);
       border-top: 1px solid rgba(81, 177, 157, 0.1);
       margin-top: var(--space-128);
     }
@@ -465,30 +467,35 @@
     .footer-container {
       max-width: 1200px;
       margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: var(--space-24);
     }
 
     .footer-cols {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: var(--space-64);
-      margin-bottom: var(--space-64);
+      display: flex;
+      gap: var(--space-48);
+      flex-wrap: wrap;
     }
 
     .footer-col h5 {
       font-family: var(--font-heading);
-      font-size: 14px;
+      font-size: 12px;
       font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 0.1em;
       color: var(--color-text-secondary);
-      margin-bottom: var(--space-24);
+      margin-bottom: var(--space-12);
     }
 
     .footer-col a {
       display: block;
       color: var(--color-text);
       text-decoration: none;
-      margin-bottom: var(--space-12);
+      margin-bottom: var(--space-8);
+      font-size: 14px;
       transition: color 0.2s;
     }
 
@@ -497,11 +504,9 @@
     }
 
     .footer-copy {
-      text-align: center;
+      text-align: right;
       font-size: 13px;
       color: var(--color-text-secondary);
-      padding-top: var(--space-32);
-      border-top: 1px solid rgba(81, 177, 157, 0.1);
     }
 
     /* Tools Section */
@@ -526,7 +531,7 @@
     }
 
     .section-header h2 {
-      font-size: 48px;
+      font-size: 36px;
       font-weight: 600;
       margin-bottom: var(--space-24);
       line-height: 1.2;
@@ -544,16 +549,20 @@
 
     .tools-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: var(--space-32);
+      grid-template-columns: 1fr;
+      gap: var(--space-24);
     }
 
     .tool-card {
       background: rgba(255, 255, 255, 0.03);
       border: 1px solid rgba(81, 177, 157, 0.1);
       border-radius: 12px;
-      padding: var(--space-32);
+      padding: var(--space-24) var(--space-32);
       transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-24);
     }
 
     .tool-card:hover {
@@ -561,70 +570,48 @@
       background: rgba(255, 255, 255, 0.05);
     }
 
+    .tool-card-info {
+      min-width: 0;
+    }
+
     .tool-card h4 {
       font-size: 18px;
       font-weight: 600;
-      margin-bottom: var(--space-12);
+      margin-bottom: var(--space-4);
       color: var(--color-white);
     }
 
     .tool-card p {
       font-size: 14px;
       color: var(--color-text-secondary);
-      margin-bottom: var(--space-16);
       line-height: 1.6;
+    }
+
+    .tool-card-meta {
+      display: flex;
+      align-items: center;
+      gap: var(--space-12);
+      flex-shrink: 0;
     }
 
     .tool-count {
       display: inline-block;
       font-size: 13px;
       color: var(--color-text-secondary);
-      margin-right: var(--space-12);
+      white-space: nowrap;
     }
 
     .tool-tag {
       display: inline-block;
       background: var(--color-teal);
       color: var(--color-black);
-      padding: var(--space-6) var(--space-14);
+      padding: var(--space-8) var(--space-16);
       border-radius: 20px;
-      font-size: 12px;
+      font-size: 13px;
       font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 0.05em;
-    }
-
-    /* Agents Section */
-    .agents-section {
-      padding: var(--space-64) 0;
-      text-align: center;
-      background: rgba(255, 255, 255, 0.01);
-    }
-
-    .agent-icons {
-      display: flex;
-      justify-content: center;
-      gap: var(--space-24);
-      flex-wrap: wrap;
-      margin-top: var(--space-32);
-    }
-
-    .agent-icon {
-      width: 64px;
-      height: 64px;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(81, 177, 157, 0.1);
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 32px;
-      transition: all 0.3s;
-    }
-
-    .agent-icon:hover {
-      border-color: rgba(81, 177, 157, 0.3);
-      background: rgba(81, 177, 157, 0.1);
+      white-space: nowrap;
     }
 
     /* Get Started Section */
@@ -635,7 +622,7 @@
     }
 
     .get-started-section h2 {
-      font-size: 48px;
+      font-size: 36px;
       font-weight: 600;
       margin-bottom: var(--space-24);
     }
@@ -671,9 +658,9 @@
     .copy-btn-large {
       background: var(--color-blue);
       color: white;
-      border: 2px solid var(--color-blue);
+      border: 1.5px solid var(--color-blue);
       padding: var(--space-12) var(--space-24);
-      border-radius: 6px;
+      border-radius: var(--radius-pill);
       font-weight: 600;
       cursor: pointer;
       white-space: nowrap;
@@ -707,13 +694,14 @@
     }
 
     .ask-section .section-header {
-      margin-bottom: var(--space-64);
+      margin-bottom: var(--space-128);
     }
 
     .ask-section h2 {
-      font-size: 28px;
+      font-size: 36px;
       font-weight: 600;
       line-height: 1.3;
+      margin-bottom: var(--space-48);
     }
 
     .prompt-grid {
@@ -780,7 +768,7 @@
     }
 
     .pillars-section h2 {
-      font-size: 28px;
+      font-size: 36px;
       font-weight: 600;
       line-height: 1.3;
     }
@@ -859,6 +847,24 @@
       .prompts-grid {
         grid-template-columns: 1fr;
       }
+
+      .tool-card {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .tool-card-meta {
+        align-self: flex-start;
+      }
+
+      .footer-container {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .footer-copy {
+        text-align: left;
+      }
     }
   </style>
 </head>
@@ -871,7 +877,7 @@
       </div>
       <div class="status-pills">
         <div class="status-pill">⬤ Uptime <strong>99.9%</strong></div>
-        <div class="status-pill">🔧 Tools <strong>38</strong></div>
+        <div class="status-pill">🔧 Tools <strong>46</strong></div>
       </div>
     </div>
   </div>
@@ -880,7 +886,7 @@
   <section class="hero">
     <h2>Bound Marketing MCP Server</h2>
 
-    <p>Connect this MCP server to your AI agent to write about Bound accurately. Brand assets, glossary, narrative pillars, audience messaging, and news — always up to date.</p>
+    <p>Connect this MCP server to your AI agent to write about Bound accurately. Brand assets, glossary, narrative pillars, audience messaging, and news — every answer dated, so you know what's current.</p>
 
     <div class="mcp-url-section">
       <div class="mcp-url-label">MCP Server URL</div>
@@ -913,7 +919,7 @@
         </div>
         <div class="prompt-card">
           <h4>Write About Bound</h4>
-          <p>"Help me write a blog post about Bound for self-custodial crypto trading"</p>
+          <p>"Help me write a blog post explaining how Boundaries work: pick a market, set a target and a loss, take the quote"</p>
           <div class="prompt-tags">
             <span class="tag">Glossary</span>
             <span class="tag">Boilerplate</span>
@@ -921,7 +927,7 @@
         </div>
         <div class="prompt-card">
           <h4>Understand the Tech</h4>
-          <p>"Explain what bUSD, Trading Wallet, and OP_12 are in plain English so I can describe them to our users"</p>
+          <p>"Explain what a Boundaries position is, and how it settles on HyperEVM, in plain English so I can describe it to our users"</p>
           <div class="prompt-tags">
             <span class="tag">Glossary</span>
             <span class="tag">Translation</span>
@@ -929,7 +935,7 @@
         </div>
         <div class="prompt-card">
           <h4>Announce a Partnership</h4>
-          <p>"Draft a tweet announcing our wallet just integrated Bound's self-custodial exchange"</p>
+          <p>"Draft a tweet announcing that our platform is integrating with Bound's Boundaries"</p>
           <div class="prompt-tags">
             <span class="tag">Boilerplate</span>
             <span class="tag">News Feed</span>
@@ -944,11 +950,11 @@
           </div>
         </div>
         <div class="prompt-card">
-          <h4>Cite Real Numbers</h4>
-          <p>"Which audience should I target for our new self-custodial loans campaign, and what hooks resonate with them?"</p>
+          <h4>Target the Right Audience</h4>
+          <p>"Which audience should I target for Boundaries, and what hooks resonate with them?"</p>
           <div class="prompt-tags">
-            <span class="tag">Boilerplate</span>
-            <span class="tag">Brand Assets</span>
+            <span class="tag">Audience Messaging</span>
+            <span class="tag">Positioning</span>
           </div>
         </div>
       </div>
@@ -956,11 +962,11 @@
   </section>
 
 
-  <!-- Core Brand Pillars Section -->
+  <!-- Key Benefits Section -->
   <section class="pillars-section">
     <div class="container">
-      <span class="section-label">CORE BRAND PILLARS</span>
-      <h2>Bound's MCP: Everything your team needs to communicate accurately.</h2>
+      <span class="section-label">KEY BENEFITS</span>
+      <h2>Everything your team needs to communicate accurately about Bound.</h2>
 
       <div class="pillars-grid">
         <div class="pillar-card">
@@ -974,9 +980,9 @@
           <p class="pillar-tagline"><em>Professionalism.</em> <em>"Beautiful, on-brand materials in minutes."</em></p>
         </div>
         <div class="pillar-card">
-          <h4>Always Up to Date</h4>
-          <p>Never worry about outdated messaging. News Feed and Positioning tools auto-sync with Bound's latest announcements, narrative pillars, and audience insights.</p>
-          <p class="pillar-tagline"><em>Reliability.</em> <em>"Current, accurate, always."</em></p>
+          <h4>Current and Dated</h4>
+          <p>Positioning, pillars, glossary, boilerplate, and audience responses carry an as-of date, and legacy and retired framing is flagged, so your agent can tell current messaging from old.</p>
+          <p class="pillar-tagline"><em>Reliability.</em> <em>"Know what's current."</em></p>
         </div>
         <div class="pillar-card">
           <h4>Easy Integration</h4>
@@ -1009,72 +1015,85 @@
 
       <div class="tools-grid">
         <div class="tool-card">
-          <h4>Voice & Guardrails</h4>
-          <p>Terminology rules, claims guidance, voice principles, and common mistakes</p>
-          <span class="tool-count">2 tools</span>
-          <span class="tool-tag">AUTO-SYNC</span>
+          <div class="tool-card-info">
+            <h4>Voice & Guardrails</h4>
+            <p>Terminology rules, claims guidance, voice principles, and common mistakes</p>
+          </div>
+          <div class="tool-card-meta">
+            <span class="tool-count">2 tools</span>
+            <span class="tool-tag">BRAND REFERENCE</span>
+          </div>
         </div>
         <div class="tool-card">
-          <h4>Positioning & Narrative</h4>
-          <p>Canonical tagline, four-pillar distillation, and all 10 narrative pillars with emotional hooks</p>
-          <span class="tool-count">2 tools</span>
-          <span class="tool-tag">WIKI-SOURCED</span>
+          <div class="tool-card-info">
+            <h4>Positioning & Narrative</h4>
+            <p>The current headline and messaging for Boundaries, its availability status, retired framing to avoid, and all 15 narrative pillars with emotional hooks</p>
+          </div>
+          <div class="tool-card-meta">
+            <span class="tool-count">2 tools</span>
+            <span class="tool-tag">CURATED</span>
+          </div>
         </div>
         <div class="tool-card">
-          <h4>Brand Assets</h4>
-          <p>Colors, typography, logo variants, bunny mascot files, and usage guidelines</p>
-          <span class="tool-count">9 tools</span>
-          <span class="tool-tag">AUTO-SYNC</span>
+          <div class="tool-card-info">
+            <h4>Brand Assets</h4>
+            <p>Colors, typography, logos, design tokens (radius, spacing, shadows, Tailwind mapping), and usage guidelines</p>
+          </div>
+          <div class="tool-card-meta">
+            <span class="tool-count">16 tools</span>
+            <span class="tool-tag">BRAND KIT V2</span>
+          </div>
         </div>
         <div class="tool-card">
-          <h4>Technical Glossary</h4>
-          <p>Boundary Contracts, Perpetuals, HyperEVM, Settlement mechanics, and more — with plain-language translations</p>
-          <span class="tool-count">7 tools</span>
-          <span class="tool-tag">AUTO-SYNC</span>
+          <div class="tool-card-info">
+            <h4>Technical Glossary</h4>
+            <p>Boundaries, Which First, quotes and boundaries, HyperEVM — plus platform and Bitcoin-era terms — with plain-language translations</p>
+          </div>
+          <div class="tool-card-meta">
+            <span class="tool-count">7 tools</span>
+            <span class="tool-tag">CURATED</span>
+          </div>
         </div>
         <div class="tool-card">
-          <h4>Sitemap</h4>
-          <p>Official canonical URLs — prevents linking to impostor domains</p>
-          <span class="tool-count">3 tools</span>
-          <span class="tool-tag">BOUND.EXCHANGE</span>
+          <div class="tool-card-info">
+            <h4>Sitemap</h4>
+            <p>Official canonical URLs — prevents linking to impostor domains</p>
+          </div>
+          <div class="tool-card-meta">
+            <span class="tool-count">3 tools</span>
+            <span class="tool-tag">BOUND.EXCHANGE</span>
+          </div>
         </div>
         <div class="tool-card">
-          <h4>News Feed</h4>
-          <p>Latest articles, announcements, partnership news, and product updates from Bound</p>
-          <span class="tool-count">4 tools</span>
-          <span class="tool-tag">AUTO-SYNC</span>
+          <div class="tool-card-info">
+            <h4>News Feed</h4>
+            <p>Latest articles, announcements, partnership news, and product updates from Bound</p>
+          </div>
+          <div class="tool-card-meta">
+            <span class="tool-count">4 tools</span>
+            <span class="tool-tag">X HIGHLIGHTS</span>
+          </div>
         </div>
         <div class="tool-card">
-          <h4>Boilerplate Descriptions</h4>
-          <p>Pre-approved copy for press kits, social bios, listings, and partner materials</p>
-          <span class="tool-count">6 tools</span>
-          <span class="tool-tag">AUTO-SYNC</span>
+          <div class="tool-card-info">
+            <h4>Boilerplate Descriptions</h4>
+            <p>Pre-approved copy for press kits, social bios, listings, and partner materials</p>
+          </div>
+          <div class="tool-card-meta">
+            <span class="tool-count">6 tools</span>
+            <span class="tool-tag">CURATED</span>
+          </div>
         </div>
         <div class="tool-card">
-          <h4>Audience Messaging</h4>
-          <p>Full messaging profiles for Traders, Developers, Risk Managers, and institutional partners</p>
-          <span class="tool-count">5 tools</span>
-          <span class="tool-tag">WIKI-SOURCED</span>
+          <div class="tool-card-info">
+            <h4>Audience Messaging</h4>
+            <p>Full messaging profiles for Perps & Hyperliquid Traders and Developers & Builders, plus earlier audience segments marked legacy</p>
+          </div>
+          <div class="tool-card-meta">
+            <span class="tool-count">5 tools</span>
+            <span class="tool-tag">CURATED</span>
+          </div>
         </div>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- Agents Section -->
-  <section class="agents-section">
-    <div class="container">
-      <span class="section-label">WORKS WITH THESE AGENTS & MORE</span>
-      <div class="agent-icons">
-        <div class="agent-icon">✱</div>
-        <div class="agent-icon">◯</div>
-        <div class="agent-icon">◻</div>
-        <div class="agent-icon">✕</div>
-        <div class="agent-icon">∼</div>
-        <div class="agent-icon">⬢</div>
-        <div class="agent-icon">◆</div>
-        <div class="agent-icon">⧖</div>
-        <div class="agent-icon">▲</div>
       </div>
     </div>
   </section>
@@ -1089,7 +1108,7 @@
         <code>{ "mcpServers": { "bound-marketing": { "url": "https://marketing.bound.exchange/mcp" } } }</code>
         <button class="copy-btn-large" onclick="copyConfig()">Copy</button>
       </div>
-      <p class="questions-text">Questions? <a href="https://discord.gg/bound" target="_blank">Contact us on Discord ↗</a></p>
+      <p class="questions-text">Questions? <a href="https://discord.com/invite/5y8hE4Xtn8" target="_blank">Contact us on Discord</a></p>
     </div>
   </section>
 
@@ -1100,25 +1119,17 @@
       <div class="footer-cols">
         <div class="footer-col">
           <h5>Resources</h5>
-          <a href="https://bound.exchange/" target="_blank">Homepage ↗</a>
-          <a href="/api">API Info</a>
-          <a href="/health">Health Check</a>
-          <a href="https://docs.bound.exchange/" target="_blank">Documentation ↗</a>
-          <a href="https://bound.exchange/brand" target="_blank">Brand Kit ↗</a>
+          <a href="https://bound.exchange/" target="_blank">Homepage</a>
+          <a href="https://docs.bound.exchange/" target="_blank">Documentation</a>
+          <a href="Bound-Brand-V2-Kit.zip" download>Brand Kit</a>
         </div>
         <div class="footer-col">
           <h5>Community</h5>
-          <a href="https://x.com/bound_exchange" target="_blank">X (Twitter) ↗</a>
-        </div>
-        <div class="footer-col">
-          <h5>Legal</h5>
-          <a href="#privacy">Privacy Policy</a>
-          <a href="#terms">Terms of Service</a>
-          <a href="#disclaimer">Disclaimer</a>
+          <a href="https://x.com/bound_exchange" target="_blank">X (Twitter)</a>
         </div>
       </div>
 
-      <div class="footer-copy">© 2025 Bound. All rights reserved. Boundary Perpetual Contracts Platform.</div>
+      <div class="footer-copy">© 2026 Bound. All rights reserved. The Exchange for Price Paths.</div>
     </div>
   </footer>
 
