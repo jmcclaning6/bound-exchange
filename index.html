@@ -1175,15 +1175,16 @@ footer .nav-text-link:hover, footer .nav-icon:hover{ color:#3a5df6; opacity:1; }
 .sym-opt[data-sym="BTC"]::before{ background-image:var(--tok-BTC); }
 .sym-opt[data-sym="ETH"]::before{ background-image:var(--tok-ETH); }
 .sym-opt[data-sym="SOL"]::before{ background-image:var(--tok-SOL); }
-/* phones: every section title gets the same breathing room as "Only possible on Hyperliquid infrastructure"
-   (about 174px from the previous content down to the title, about 74px from the title to its first content) */
+/* phones: every section title gets the same spacing as "Only possible on Hyperliquid infrastructure", measured against the
+   visible coloured edge: ~77px from the previous content to that edge, ~97px from the edge to the title, ~74px from the title to its content */
 @media(max-width:900px){
-  #how{ padding-bottom:20px; }
-  #versus{ padding-top:154px; }
-  #social{ padding-top:138px; }
-  #how .section-head{ margin-bottom:96px; }
+  #how{ padding-top:113px; padding-bottom:76px; }
+  #versus{ padding-top:98px; padding-bottom:134px; }
+  #novelty{ padding-top:40px; padding-bottom:100px; }
+  #social{ padding-top:102px; }
+  #how .section-head{ margin-bottom:37px; }
   #versus .section-head{ margin-bottom:68px; }
-  #novelty .section-head{ margin-bottom:17px; }
+  #novelty .section-head{ margin-bottom:74px; }   /* this head also has a subtitle, so the gap is measured from the subtitle */
   .invest-col .section-title{ margin-bottom:14px; }
 }
 </style>
